@@ -1,1 +1,13 @@
-@import "tailwindcss"; 
+@import "tailwindcss";
+
+@theme {
+  --color-primary-light: #59b9f6;
+  --color-primary-dark: #1f4e79;
+  --color-background-soft: #eef6fc;
+  --color-background-white: #ffffff;
+  --color-text-dark: #1e1e1e;
+  --color-text-muted: #6f7a85;
+  --color-accent: #f5a623;
+  --font-poppins: "Poppins", sans-serif;
+  --font-manrope: "Manrope", sans-serif;
+}
