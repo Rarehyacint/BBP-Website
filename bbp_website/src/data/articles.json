@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "title": "Complete Guide to Getting a Japan Tourist Visa",
+    "summary": "Everything you need to know about applying for a Japan tourist visa as a Filipino passport holder.",
+    "tags": ["Japan", "Tourist Visa", "Asia"],
+    "category": "Visa Guides",
+    "image": "",
+    "link": "#"
+  },
+  {
+    "id": 2,
+    "title": "Step-by-Step Guide for First-time Travelers",
+    "summary": "Nervous about your first international flight? Here are all the requirements and tips to ensure a smooth departure.",
+    "tags": ["Tips", "First Time", "Unang Lipad"],
+    "category": "Unang Lipad",
+    "image": "",
+    "link": "#"
+  },
+  {
+    "id": 3,
+    "title": "Schengen Visa Requirements for Sponsored Trips",
+    "summary": "Planning to visit a relative in Europe? Ensure you have the right sponsorship letters and financial documents.",
+    "tags": ["Schengen", "Europe", "Requirements"],
+    "category": "Requirements",
+    "image": "",
+    "link": "#"
+  },
+  {
+    "id": 4,
+    "title": "Budget Travel: Exploring South Korea on a Shoestring",
+    "summary": "You don't need a huge bank account to enjoy Seoul. Discover free attractions and cheap eats across South Korea.",
+    "tags": ["South Korea", "Budget", "Tips"],
+    "category": "Travel Tips",
+    "image": "",
+    "link": "#"
+  }
+]
