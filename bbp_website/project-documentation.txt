@@ -19,14 +19,14 @@ This document outlines the comprehensive refactoring, design modernization, and 
 *   **Form Usability:** Fixed inputs and search bars to prevent generic autofill UI clutter.
 
 ## 4. Global Refinements & Color Palette Enforcement
-*   **Palette Standardization:** Conducted a global audit to strip out non-conforming accent colors (e.g., orange gradients/hex codes) that degraded the professional look.
+*   **Palette Standardization:** Conducted a global audit to strip out non-conforming accent colors (e.g., orange gradients/hex codes).
 *   **Blue Identity Enforcement:** Unified all gradients, text highlights, and badge accents strictly back to the brand's primary blue color palette (`--color-primary-light`, `--color-primary-dark`, `#59b9f6`, `#1f4e79`).
 
 ## 5. Page-by-Page Updates
 *   **Home:** Fully animated landing experience with structured value props.
 *   **Visas & Destinations:** Interactive grid directories with country code hover states and dynamic modal expansions.
 *   **Articles & News:** Clean, readable card layouts with staggered entrance animations.
-*   **VisaTypePage:** Modernized informational detail pages with fluid, reactive layouts.
+*   **Visa Type Page:** Modernized informational detail pages with fluid, reactive layouts.
 
 ## Current State
-The repository is fully stabilized, compiles optimally, and demonstrates a professional, senior-level frontend execution. The visual language is deeply cohesive, performant, and ready for further feature expansions or deployment.
+The repository is fully stabilized, compiles optimally, and demonstrates a professional, frontend execution. The visual language is deeply cohesive, performant, and ready for further feature expansions or deployment.
