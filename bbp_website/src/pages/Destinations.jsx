@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import SiteHeader from "../components/SiteHeader";
 import destinationsData from "../data/destinations.json";
 
@@ -140,13 +141,13 @@ const Destinations = ({ destinationName, onBack }) => {
                   <span className="text-muted text-xs font-manrope font-semibold flex items-center gap-1.5">
                     <i className="ri-calendar-line"></i> {article.date}
                   </span>
-                  <a
-                    href={article.link}
+                  <Link
+                    to={`/articles/${article.id}`}
                     className="inline-flex items-center text-[#59b9f6] hover:text-primary-dark font-poppins font-bold text-sm transition-colors"
                   >
                     Read
                     <i className="ri-arrow-right-line ml-1 group-hover:translate-x-1.5 transition-transform"></i>
-                  </a>
+                  </Link>
                 </div>
               </motion.div>
             ))

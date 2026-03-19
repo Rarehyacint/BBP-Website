@@ -1,38 +1,142 @@
 [
   {
-    "id": 1,
-    "title": "Complete Guide to Getting a Japan Tourist Visa",
-    "summary": "Everything you need to know about applying for a Japan tourist visa as a Filipino passport holder.",
-    "tags": ["Japan", "Tourist Visa", "Asia"],
-    "category": "Visa Guides",
-    "image": "",
-    "link": "#"
+    "id": "singapore-visa-guide",
+    "title": "Singapore Visa Requirements for Filipino Tourists: Complete Guide",
+    "summary": "Step-by-step guide to applying for a Singapore tourist visa including online application process, required documents, and processing time for Filipino passport holders.",
+    "date": "Feb 23, 2026",
+    "tags": ["Singapore", "Tourist Visa"],
+    "author": "Maria Santos",
+    "readTime": "8 min read",
+    "content": "Singapore remains one of the top destinations for Filipinos. While it is visa-free for visits under 30 days, there are still crucial requirements you need to prepare to ensure a smooth entry.\n\nFrom the SG Arrival Card to proof of accommodation, this guide covers everything you need to know about preparing your travel documents.\n\nWe recommend starting your preparation at least two weeks before your flight to avoid last-minute stress.",
+    "keyTakeaways": [
+      "Always fill out the SG Arrival Card 3 days before entry",
+      "Have a printed copy of your return flight ticket",
+      "Ensure your passport has at least 6 months validity",
+      "Download the Singpass app for easier navigation",
+      "Keep digital copies of your hotel booking on your phone"
+    ],
+    "additionalResources": "Visit the official ICA website for the latest updates on entry requirements and e-gate eligibility for PH citizens.",
+    "proTip": "Use the automated lanes if you have a biometric passport; it saves a lot of time at Changi Airport!",
+    "category": "Visa Guides"
   },
   {
-    "id": 2,
-    "title": "Step-by-Step Guide for First-time Travelers",
-    "summary": "Nervous about your first international flight? Here are all the requirements and tips to ensure a smooth departure.",
+    "id": "first-time-travel-checklist",
+    "title": "Your First International Flight: A Complete Checklist",
+    "summary": "Everything you need to know before boarding your first international flight.",
+    "date": "February 16, 2026",
     "tags": ["Tips", "First Time", "Unang Lipad"],
-    "category": "Unang Lipad",
-    "image": "",
-    "link": "#"
+    "author": "Maria Santos",
+    "readTime": "8 min read",
+    "content": "Stepping into the airport for your first international flight can be overwhelming. This checklist is designed to keep you organized and confident.\n\nFrom check-in procedures to the immigration interview, we break down each step so you know exactly what to expect.\n\nTraveling is an adventure, but being prepared makes the journey much more enjoyable.",
+    "keyTakeaways": [
+      "Always prepare your documents well in advance",
+      "Double-check requirements specific to your destination",
+      "Keep both physical and digital copies of important documents",
+      "Stay updated with the latest travel advisories",
+      "Don't hesitate to ask questions at immigration or airport staff"
+    ],
+    "additionalResources": "For more information and updates, make sure to check official government websites and consult with travel professionals. Every traveler's situation is unique, so tailor these guidelines to your specific needs.",
+    "proTip": "Always arrive at the airport earlier than required. This gives you buffer time to handle any unexpected situations calmly.",
+    "category": "Unang Lipad"
   },
   {
-    "id": 3,
-    "title": "Schengen Visa Requirements for Sponsored Trips",
-    "summary": "Planning to visit a relative in Europe? Ensure you have the right sponsorship letters and financial documents.",
-    "tags": ["Schengen", "Europe", "Requirements"],
-    "category": "Requirements",
-    "image": "",
-    "link": "#"
+    "id": "us-visa-interview-tips",
+    "title": "US B1/B2 Tourist Visa Interview Tips",
+    "summary": "Ace your US visa interview with these top tips for Filipino applicants, including what to wear, how to answer common questions, and documents to bring.",
+    "date": "Feb 18, 2026",
+    "tags": ["USA", "Tourist Visa"],
+    "author": "Ramon Dela Cruz",
+    "readTime": "10 min read",
+    "content": "The US visa interview is often the most nerve-wracking part of the application. However, the key to success is honesty and preparation.\n\nConsular officers are looking for strong ties to your home country. Be prepared to explain your itinerary and how you plan to fund your trip.\n\nRemember, the interview is usually very short, so clear and concise answers are vital.",
+    "keyTakeaways": [
+      "Be honest and consistent with your DS-160 form",
+      "Dress professionally but comfortably",
+      "Focus on explaining your strong ties to the Philippines",
+      "Bring original documents but don't volunteer them unless asked",
+      "Practice common interview questions with a friend"
+    ],
+    "additionalResources": "Check the US Embassy in Manila's website for current wait times and any updated health protocols.",
+    "proTip": "Don't bring liquids or large electronics into the embassy; the security line is strict!",
+    "category": "Visa Guides"
   },
   {
-    "id": 4,
-    "title": "Budget Travel: Exploring South Korea on a Shoestring",
-    "summary": "You don't need a huge bank account to enjoy Seoul. Discover free attractions and cheap eats across South Korea.",
-    "tags": ["South Korea", "Budget", "Tips"],
-    "category": "Travel Tips",
-    "image": "",
-    "link": "#"
+    "id": "uk-student-visa-guide",
+    "title": "How to get a UK Student Visa",
+    "summary": "Comprehensive guide for Filipino students planning to study in the United Kingdom. Learn about the CAS, financial requirements, and application steps.",
+    "date": "Feb 10, 2026",
+    "tags": ["UK", "Study Visa"],
+    "author": "Elena Garcia",
+    "readTime": "12 min read",
+    "content": "Studying in the UK is a life-changing experience. To get there, you'll need a Student Visa (formerly Tier 4).\n\nYour journey starts with the Confirmation of Acceptance for Studies (CAS) from your chosen university. This document is the foundation of your application.\n\nYou'll also need to prove your English language proficiency and show that you have enough funds to support yourself during your stay.",
+    "keyTakeaways": [
+      "Secure your CAS before starting the visa application",
+      "Ensure your bank statements meet the 28-day rule",
+      "Prepare for a credibility interview if required",
+      "Check if your course requires an ATAS certificate",
+      "Pay the Immigration Health Surcharge as part of your application"
+    ],
+    "additionalResources": "The UK Council for International Student Affairs (UKCISA) provides excellent advice on student life and regulations.",
+    "proTip": "Apply as early as possible—up to 6 months before your course starts!",
+    "category": "Visa Guides"
+  },
+  {
+    "id": "spain-digital-nomad-guide",
+    "title": "Spain Digital Nomad Visa: A Guide for Freelancers",
+    "summary": "Find out if you qualify for the new Spain Digital Nomad Visa. We cover income requirements, tax implications, and the application procedure.",
+    "date": "Jan 25, 2026",
+    "tags": ["Spain", "Digital Nomad Visa"],
+    "author": "Carlos Mendoza",
+    "readTime": "9 min read",
+    "content": "Dreaming of working from a sun-drenched cafe in Barcelona? The Spain Digital Nomad Visa makes this possible for non-EU citizens.\n\nThis visa is designed for remote workers and freelancers who can prove they earn a certain income from clients outside of Spain.\n\nIt offers a path to residency and allows you to travel freely within the Schengen Area while enjoying the Spanish lifestyle.",
+    "keyTakeaways": [
+      "Verify that your income meets the minimum monthly threshold",
+      "Ensure you've been working remotely for at least one year",
+      "Get a background check from the NBI and any other country you lived in",
+      "Check the specialized tax regime (Beckham Law) eligibility",
+      "Choose between applying from at home or while in Spain on a tourist visa"
+    ],
+    "additionalResources": "The Spanish Ministry of Foreign Affairs has the detailed list of required certifications and translations.",
+    "proTip": "Translate all your documents into Spanish using a sworn translator (traductor jurado) to avoid delays.",
+    "category": "Visa Guides"
+  },
+  {
+    "id": "philippine-srrv-guide",
+    "title": "Retiring in the Philippines: SRRV Guide",
+    "summary": "Complete information on the Special Resident Retiree's Visa for foreign nationals who wish to retire in the Philippines or for returning Filipinos.",
+    "date": "Jan 12, 2026",
+    "tags": ["Philippines", "Retirement"],
+    "author": "Liza Tan",
+    "readTime": "11 min read",
+    "content": "The Philippines is a top retirement destination thanks to its low cost of living and hospitable culture. The SRRV is the primary visa for retirees.\n\nThe program offers multiple options depending on your age and health status. It provides permanent residency and various tax exemptions.\n\nWhether you're a former Filipino citizen looking to return or a foreign national seeking a tropical home, this guide explains the process clearly.",
+    "keyTakeaways": [
+      "Determine which SRRV option (Smile, Classic, or Human Touch) fits you",
+      "Open a dollar deposit account in a PRA-authorized bank",
+      "Gather your health certificate and police clearance from your home country",
+      "Consider the SRRV Courtesy for former PH citizens",
+      "Plan for the annual PRA fee of $360"
+    ],
+    "additionalResources": "Contact the Philippine Retirement Authority (PRA) for a personalized list of requirements and accredited agents.",
+    "proTip": "Use an accredited marketing agent; they can handle the bank deposits and paperwork for a smoother experience.",
+    "category": "Visa Guides"
+  },
+  {
+    "id": "canada-family-sponsorship-guide",
+    "title": "Canada Family Sponsorship Program 2026",
+    "summary": "Everything you need to know about sponsoring your spouse, partner, or dependent children to join you in Canada.",
+    "date": "Jan 5, 2026",
+    "tags": ["Canada", "Family Reunification"],
+    "author": "Mark Wilson",
+    "readTime": "15 min read",
+    "content": "Reuniting with family is a priority for the Canadian government. The Family Sponsorship program allows permanent residents and citizens to bring their loved ones to Canada.\n\nSponsoring a spouse or child involves dual applications: one to be a sponsor and one for the sponsored person to become a permanent resident.\n\nIt's a long process, but seeing your family together in Canada is worth the effort.",
+    "keyTakeaways": [
+      "Confirm your eligibility as a sponsor (income and residency)",
+      "Collect extensive proof of your relationship (photos, chats, etc.)",
+      "Complete both the sponsorship and permanent residence application forms",
+      "Pay the processing fees and biometrics fee upfront",
+      "Keep track of your application status through the IRCC portal"
+    ],
+    "additionalResources": "The IRCC website has an interactive tool to check which forms you need based on who you are sponsoring.",
+    "proTip": "Submit as many relationship proofs as possible. 'Too much' is rarely an issue when proving a genuine marriage!",
+    "category": "Visa Guides"
   }
 ]

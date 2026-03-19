@@ -1,50 +1,50 @@
 [
   {
-    "id": 1,
+    "id": "singapore-visa-guide",
     "title": "Singapore Visa Requirements for Filipino Tourists: Complete Guide",
     "summary": "Step-by-step guide to applying for a Singapore tourist visa including online application process, required documents, and processing time for Filipino passport holders.",
     "date": "Feb 23, 2026",
     "tags": ["Singapore", "Tourist Visa"],
-    "link": "#"
+    "link": "/articles/singapore-visa-guide"
   },
   {
-    "id": 2,
+    "id": "us-visa-interview-tips",
     "title": "US B1/B2 Tourist Visa Interview Tips",
     "summary": "Ace your US visa interview with these top tips for Filipino applicants, including what to wear, how to answer common questions, and documents to bring.",
     "date": "Feb 18, 2026",
     "tags": ["USA", "Tourist Visa"],
-    "link": "#"
+    "link": "/articles/us-visa-interview-tips"
   },
   {
-    "id": 3,
+    "id": "uk-student-visa-guide",
     "title": "How to get a UK Student Visa",
     "summary": "Comprehensive guide for Filipino students planning to study in the United Kingdom. Learn about the CAS, financial requirements, and application steps.",
     "date": "Feb 10, 2026",
     "tags": ["UK", "Study Visa"],
-    "link": "#"
+    "link": "/articles/uk-student-visa-guide"
   },
   {
-    "id": 4,
+    "id": "spain-digital-nomad-guide",
     "title": "Spain Digital Nomad Visa: A Guide for Freelancers",
     "summary": "Find out if you qualify for the new Spain Digital Nomad Visa. We cover income requirements, tax implications, and the application procedure.",
     "date": "Jan 25, 2026",
     "tags": ["Spain", "Digital Nomad Visa"],
-    "link": "#"
+    "link": "/articles/spain-digital-nomad-guide"
   },
   {
-    "id": 5,
+    "id": "philippine-srrv-guide",
     "title": "Retiring in the Philippines: SRRV Guide",
     "summary": "Complete information on the Special Resident Retiree's Visa for foreign nationals who wish to retire in the Philippines or for returning Filipinos.",
     "date": "Jan 12, 2026",
-    "tags": ["Philippines", "Family Reunification Retirement"],
-    "link": "#"
+    "tags": ["Philippines", "Retirement"],
+    "link": "/articles/philippine-srrv-guide"
   },
   {
-    "id": 6,
+    "id": "canada-family-sponsorship-guide",
     "title": "Canada Family Sponsorship Program 2026",
     "summary": "Everything you need to know about sponsoring your spouse, partner, or dependent children to join you in Canada.",
     "date": "Jan 5, 2026",
-    "tags": ["Canada", "Family Reunification Retirement"],
-    "link": "#"
+    "tags": ["Canada", "Family Reunification"],
+    "link": "/articles/canada-family-sponsorship-guide"
   }
 ]

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import SiteHeader from "../components/SiteHeader";
 import visasData from "../data/visas.json";
 
@@ -9,11 +10,9 @@ const VisaTypePage = ({ visaName, onBack }) => {
   const getIcon = (name) => {
     switch (name) {
       case "Tourist Visa": return "ri-plane-fill";
-      case "Student Visa":
       case "Study Visa": return "ri-graduation-cap-line";
       case "Digital Nomad Visa": return "ri-macbook-line";
-      case "Family Reunification Visa":
-      case "Family Reunification Retirement": return "ri-group-line";
+      case "Family Reunification": return "ri-group-line";
       case "Retirement": return "ri-home-5-line";
       default: return "ri-passport-line";
     }
@@ -22,14 +21,14 @@ const VisaTypePage = ({ visaName, onBack }) => {
   const filteredVisas = visasData.filter((article) => {
     const matchesVisa = article.tags.includes(visaName);
     const matchesSearch = article.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                          article.summary.toLowerCase().includes(searchQuery.toLowerCase());
+      article.summary.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesVisa && matchesSearch;
   });
 
   return (
     <div className="min-h-screen bg-background-soft text-dark font-manrope">
       <SiteHeader />
-      
+
       <main className="relative pt-6 pb-20 px-4 sm:px-6 max-w-7xl mx-auto">
         {/* Back Button */}
         <button
@@ -41,7 +40,7 @@ const VisaTypePage = ({ visaName, onBack }) => {
         </button>
 
         {/* Header Section */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -63,7 +62,7 @@ const VisaTypePage = ({ visaName, onBack }) => {
         </motion.div>
 
         {/* Search Bar */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
@@ -82,7 +81,7 @@ const VisaTypePage = ({ visaName, onBack }) => {
         </motion.div>
 
         {/* Articles Grid */}
-        <motion.div 
+        <motion.div
           initial="hidden"
           animate="show"
           variants={{
@@ -105,7 +104,7 @@ const VisaTypePage = ({ visaName, onBack }) => {
                 className="group relative bg-white/60 backdrop-blur-xl rounded-3xl p-6 sm:p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-white hover:shadow-[0_20px_40px_rgba(89,185,246,0.12)] hover:-translate-y-1 transition-all duration-300 flex flex-col h-full overflow-hidden"
               >
                 <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-primary-light to-primary-dark opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                
+
                 <div className="flex flex-wrap gap-2 mb-5">
                   {article.tags.map((tag, tagIdx) => (
                     <span
@@ -129,18 +128,18 @@ const VisaTypePage = ({ visaName, onBack }) => {
                   <span className="text-muted text-xs font-manrope font-semibold flex items-center gap-1.5">
                     <i className="ri-calendar-line"></i> {article.date}
                   </span>
-                  <a
-                    href={article.link}
+                  <Link
+                    to={`/articles/${article.id}`}
                     className="inline-flex items-center text-[#59b9f6] hover:text-primary-dark font-poppins font-bold text-sm transition-colors"
                   >
                     Read
                     <i className="ri-arrow-right-line ml-1 group-hover:translate-x-1.5 transition-transform"></i>
-                  </a>
+                  </Link>
                 </div>
               </motion.div>
             ))
           ) : (
-             <div className="col-span-full py-16 text-center">
+            <div className="col-span-full py-16 text-center">
               <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-white shadow-sm mb-4">
                 <i className="ri-file-search-line text-3xl text-muted"></i>
               </div>

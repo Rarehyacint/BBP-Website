@@ -5,7 +5,9 @@ import Destinations from "./pages/Destinations";
 import Home from "./pages/Home";
 import News from "./pages/News";
 import Visas from "./pages/Visas";
+import Services from "./pages/Services";
 import VisaTypePage from "./pages/VisaTypePage";
+import ArticleContent from "./pages/ArticleContent";
 
 function ArticlesRoute() {
   const navigate = useNavigate();
@@ -15,6 +17,11 @@ function ArticlesRoute() {
 function NewsRoute() {
   const navigate = useNavigate();
   return <News onBack={() => navigate("/")} />;
+}
+
+function ServicesRoute() {
+  const navigate = useNavigate();
+  return <Services onBack={() => navigate("/")} />;
 }
 
 function VisaTypeRoute() {
@@ -43,7 +50,9 @@ export default function App() {
       <Route path="/visas/:visaType" element={<VisaTypeRoute />} />
       <Route path="/destinations/:region" element={<DestinationRoute />} />
       <Route path="/articles" element={<ArticlesRoute />} />
+      <Route path="/articles/:id" element={<ArticleContent />} />
       <Route path="/news" element={<NewsRoute />} />
+      <Route path="/services" element={<ServicesRoute />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );

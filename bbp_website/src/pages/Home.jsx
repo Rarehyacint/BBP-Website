@@ -1,7 +1,36 @@
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import SiteHeader from "../components/SiteHeader";
-import { motion } from "framer-motion";
-import { Link, useNavigate } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "react-router-dom";
+
+const FLAG_CODES_URL = "https://flagcdn.com/en/codes.json";
+const COUNTRY_INFO_URL = "https://restcountries.com/v3.1/alpha/";
+
+function flagUrl(code, width) {
+  const safeCode = String(code || "").toLowerCase();
+  return `https://flagcdn.com/w${width}/${safeCode}.png`;
+}
+
+function slugify(text) {
+  return String(text || "")
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, "")
+    .trim()
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-");
+}
+
+function normalizeSubregion(value) {
+  const v = String(value || "").trim();
+  if (!v) return "";
+  return v
+    .replace(/^Southern\s+/i, "South ")
+    .replace(/^Northern\s+/i, "North ")
+    .replace(/^Eastern\s+/i, "East ")
+    .replace(/^Western\s+/i, "West ");
+}
 
 const popularDestinations = [
   "Japan",
@@ -14,9 +43,9 @@ const popularDestinations = [
 
 const browseVisaTypes = [
   { name: "Tourist Visa", icon: "ri-plane-fill" },
-  { name: "Student Visa", icon: "ri-graduation-cap-line" },
+  { name: "Study Visa", icon: "ri-graduation-cap-line" },
   { name: "Digital Nomad Visa", icon: "ri-macbook-line" },
-  { name: "Family Reunification Visa", icon: "ri-group-line" },
+  { name: "Family Reunification", icon: "ri-group-line" },
   { name: "Retirement", icon: "ri-home-5-line" },
 ];
 
@@ -68,13 +97,116 @@ const itemVariants = {
 
 export default function Home() {
   const [search, setSearch] = useState("");
-  const navigate = useNavigate();
+
+  const [selectedCode, setSelectedCode] = useState(null);
+  const [codes, setCodes] = useState([]);
+  const [status, setStatus] = useState("loading"); // loading | ready | error
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const [modalCountry, setModalCountry] = useState(null);
+  const [modalStatus, setModalStatus] = useState("idle");
+  const [modalError, setModalError] = useState("");
+  const [modalInfo, setModalInfo] = useState(null);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    async function load() {
+      try {
+        setStatus("loading");
+        setErrorMessage("");
+
+        const res = await fetch(FLAG_CODES_URL, { cache: "force-cache" });
+        if (!res.ok) throw new Error(`Failed to load country list (${res.status})`);
+        const json = await res.json();
+
+        const entries = Object.entries(json)
+          .filter(([code]) => /^[a-z]{2}$/i.test(code))
+          .map(([code, name]) => ({ code: code.toLowerCase(), name }))
+          .sort((a, b) => a.name.localeCompare(b.name));
+
+        if (cancelled) return;
+        setCodes(entries);
+        setStatus("ready");
+      } catch (err) {
+        if (cancelled) return;
+        setStatus("error");
+        setErrorMessage(err instanceof Error ? err.message : "Failed to load countries");
+      }
+    }
+
+    load();
+    return () => { cancelled = true; };
+  }, []);
+
+  const filtered = useMemo(() => {
+    const q = search.trim().toLowerCase();
+    if (!q) return codes;
+    return codes.filter((c) => c.name.toLowerCase().includes(q));
+  }, [codes, search]);
+
+  function handleSelect(country) {
+    setSelectedCode(country.code);
+  }
+
+  function openModal(country) {
+    setModalCountry(country);
+  }
+
+  function closeModal() {
+    setModalCountry(null);
+    setModalStatus("idle");
+    setModalError("");
+    setModalInfo(null);
+  }
+
+  useEffect(() => {
+    if (!modalCountry) return;
+    let cancelled = false;
+
+    async function loadCountryInfo() {
+      try {
+        setModalStatus("loading");
+        setModalError("");
+        setModalInfo(null);
+
+        const res = await fetch(`${COUNTRY_INFO_URL}${modalCountry.code}`, {
+          cache: "force-cache",
+        });
+        if (!res.ok) throw new Error(`Failed to load country info (${res.status})`);
+        const json = await res.json();
+
+        const item = Array.isArray(json) ? json[0] : json;
+        const continent = item?.region ? String(item.region) : "";
+        const region = item?.subregion ? normalizeSubregion(item.subregion) : "";
+
+        if (cancelled) return;
+        setModalInfo({ continent, region });
+        setModalStatus("ready");
+      } catch (err) {
+        if (cancelled) return;
+        setModalStatus("error");
+        setModalError(err instanceof Error ? err.message : "Failed to load country info");
+      }
+    }
+
+    loadCountryInfo();
+    return () => { cancelled = true; };
+  }, [modalCountry]);
+
+  useEffect(() => {
+    if (!modalCountry) return;
+
+    function onKeyDown(e) {
+      if (e.key === "Escape") closeModal();
+    }
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [modalCountry]);
 
   const handleSearch = (e) => {
     e.preventDefault();
-    if (search.trim()) {
-      navigate(`/visas?q=${encodeURIComponent(search)}`);
-    }
   };
 
   return (
@@ -86,49 +218,147 @@ export default function Home() {
         {/* Abstract Background Blobs */}
         <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-[#59b9f6]/20 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-[-10%] right-[-10%] w-[30%] h-[50%] bg-[#1f4e79]/10 rounded-full blur-3xl pointer-events-none" />
-        
-        <motion.div 
-          className="relative z-10 max-w-4xl mx-auto"
+
+        <motion.div
+          className="relative z-10 max-w-4xl mx-auto w-full"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          <h1 className="font-poppins font-extrabold text-5xl md:text-7xl tracking-tight text-[#1f4e79] mb-6 leading-tight">
-            Explore the World with a <br className="hidden md:block" />
+          <h1 className="font-poppins font-extrabold text-4xl sm:text-5xl md:text-7xl tracking-tight text-[#1f4e79] mb-6 leading-[1.1]">
+            Explore the World with a <br className="hidden sm:block" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#59b9f6] to-[#1f4e79]">
               Philippine Passport
             </span>
           </h1>
-          <p className="text-lg md:text-xl text-dark/70 max-w-2xl mx-auto mb-10 font-medium">
+          <p className="text-base sm:text-lg md:text-xl text-dark/70 max-w-2xl mx-auto mb-10 font-medium px-4">
             Your definitive guide to tourist visas, digital nomad routes, and documentation required for Filipinos.
           </p>
 
-          <form onSubmit={handleSearch} className="max-w-3xl mx-auto relative group">
+          <form onSubmit={handleSearch} className="max-w-3xl mx-auto relative group mb-10">
             <div className="absolute inset-0 bg-gradient-to-r from-[#59b9f6] to-[#1f4e79] rounded-full blur opacity-25 group-hover:opacity-40 transition duration-500"></div>
-            <div className="relative bg-white/90 backdrop-blur-xl rounded-full shadow-lg p-2 md:p-3 border border-white flex items-center transition-all focus-within:ring-4 focus-within:ring-[#59b9f6]/20">
-              <i className="ri-search-line text-[#59b9f6] text-2xl ml-4 mr-3"></i>
-              <input
-                type="text"
-                placeholder="Search destination, visa type, or country..."
-                className="w-full bg-transparent outline-none text-dark placeholder-muted/60 text-lg py-2"
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-              />
-              <button type="submit" className="hidden md:block bg-[#1f4e79] hover:bg-[#153a5b] text-white px-8 py-3 rounded-full font-poppins font-bold transition-transform hover:scale-105 active:scale-95">
+            <div className="relative bg-white rounded-3xl md:rounded-full shadow-lg p-2 flex flex-col md:flex-row items-center transition-all focus-within:ring-4 focus-within:ring-[#59b9f6]/20 border border-gray-100">
+              <div className="flex items-center w-full px-2">
+                <i className="ri-search-line text-[#59b9f6] text-xl md:text-2xl mr-3"></i>
+                <input
+                  type="text"
+                  placeholder="Search destination or visa..."
+                  className="w-full bg-transparent outline-none text-dark placeholder-muted/60 text-base md:text-lg py-3"
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                />
+              </div>
+              <button type="submit" className="w-full md:w-auto bg-[#1f4e79] hover:bg-[#153a5b] text-white px-8 py-3.5 rounded-2xl md:rounded-full font-poppins font-bold transition-all hover:scale-[1.02] active:scale-95 mt-2 md:mt-0 shadow-lg shadow-[#1f4e79]/20">
                 Search
               </button>
             </div>
           </form>
         </motion.div>
+
+        {/* Interactive Flags Grid */}
+        <motion.div
+          className="bg-white/60 backdrop-blur-3xl rounded-[2rem] border border-white shadow-[0_8px_30px_rgb(0,0,0,0.04)] p-6 sm:p-8 text-left w-full max-w-7xl mx-auto relative z-10"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+        >
+          {status === "error" ? (
+            <div className="text-sm text-muted text-center">
+              <p className="font-bold text-red-500 mb-1">Couldn’t load flags.</p>
+              <p className="mb-2">{errorMessage}</p>
+              <p>Check your internet connection and refresh.</p>
+            </div>
+          ) : (
+            <motion.div
+              className="grid gap-3"
+              style={{ gridTemplateColumns: "repeat(auto-fill, minmax(48px, 1fr))" }}
+              initial="hidden"
+              animate="show"
+              variants={{
+                hidden: { opacity: 0 },
+                show: {
+                  opacity: 1,
+                  transition: { staggerChildren: 0.015 }
+                }
+              }}
+            >
+              {(status === "loading" ? Array.from({ length: 140 }) : filtered).map((country, idx) => {
+                if (status === "loading") {
+                  return (
+                    <div
+                      key={idx}
+                      className="h-8 sm:h-10 rounded-xl bg-gray-100 animate-pulse border border-gray-200"
+                      aria-hidden="true"
+                    />
+                  );
+                }
+
+                const isSelected = selectedCode === country.code;
+                return (
+                  <motion.button
+                    variants={{
+                      hidden: { opacity: 0, scale: 0.8 },
+                      show: { opacity: 1, scale: 1 }
+                    }}
+                    key={country.code}
+                    type="button"
+                    onClick={() => {
+                      handleSelect(country);
+                      openModal(country);
+                    }}
+                    title={country.code.toUpperCase()}
+                    className={
+                      "group relative rounded-md border bg-white overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-[#59b9f6]/70 transition " +
+                      (isSelected
+                        ? "border-[#59b9f6] ring-2 ring-[#59b9f6]/60"
+                        : "border-gray-200 hover:border-primary-light")
+                    }
+                    aria-label={`${country.name} (${country.code.toUpperCase()})`}
+                    aria-pressed={isSelected}
+                  >
+                    <img
+                      src={flagUrl(country.code, 40)}
+                      srcSet={`${flagUrl(country.code, 40)} 1x, ${flagUrl(country.code, 80)} 2x`}
+                      width={40}
+                      height={30}
+                      loading="lazy"
+                      className="w-full h-7 sm:h-8 object-cover"
+                      alt={`${country.name} flag`}
+                    />
+                    <span
+                      aria-hidden="true"
+                      className="absolute inset-0 flex items-center justify-center bg-primary-dark/60 opacity-0 group-hover:opacity-100 transition-opacity"
+                    >
+                      <span className="text-white text-xs font-poppins font-extrabold tracking-[0.2em] drop-shadow-md">
+                        {country.code.toUpperCase()}
+                      </span>
+                    </span>
+                    <span className="sr-only">{country.name}</span>
+                  </motion.button>
+                );
+              })}
+            </motion.div>
+          )}
+
+          {status === "ready" && filtered.length === 0 && (
+            <p className="text-sm text-muted mt-6 text-center font-medium">No matches found for "{search}".</p>
+          )}
+
+          {status === "ready" && (
+            <p className="text-sm text-dark/50 mt-6 text-center">
+              Tip: click a flag to view more information.
+            </p>
+          )}
+        </motion.div>
       </section>
 
       {/* Popular Destinations */}
-      <motion.section 
+      <motion.section
         className="px-6 py-12 max-w-7xl mx-auto relative z-10"
         initial="hidden" whileInView="show" viewport={{ once: true, margin: "-50px" }}
         variants={containerVariants}
       >
-        <motion.h2 variants={itemVariants} className="font-poppins font-extrabold text-3xl text-dark mb-8 flex items-center gap-3">
+        <motion.h2 variants={itemVariants} className="font-poppins font-extrabold text-2xl sm:text-3xl text-dark mb-8 flex items-center gap-3">
           <span className="w-10 h-10 rounded-xl bg-[#59b9f6]/10 flex items-center justify-center text-[#59b9f6]">
             <i className="ri-flight-takeoff-line"></i>
           </span>
@@ -148,20 +378,20 @@ export default function Home() {
       </motion.section>
 
       {/* Browse by Visa Type */}
-      <motion.section 
+      <motion.section
         className="px-6 py-16 max-w-7xl mx-auto"
         initial="hidden" whileInView="show" viewport={{ once: true, margin: "-50px" }}
         variants={containerVariants}
       >
         <motion.div variants={itemVariants} className="flex items-center justify-between mb-8">
-           <h2 className="font-poppins font-extrabold text-3xl text-dark flex items-center gap-3">
+          <h2 className="font-poppins font-extrabold text-2xl sm:text-3xl text-dark flex items-center gap-3">
             <span className="w-10 h-10 rounded-xl bg-[#59b9f6]/10 flex items-center justify-center text-[#59b9f6]">
               <i className="ri-passport-line"></i>
             </span>
-             Visa Types
-           </h2>
+            Visa Types
+          </h2>
         </motion.div>
-        
+
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
           {browseVisaTypes.map((visa, idx) => (
             <motion.div key={visa.name} variants={itemVariants}>
@@ -180,7 +410,7 @@ export default function Home() {
       </motion.section>
 
       {/* Unang Lipad – First Time Travelers */}
-      <motion.section 
+      <motion.section
         className="px-6 py-12 max-w-7xl mx-auto"
         initial={{ opacity: 0, scale: 0.95 }}
         whileInView={{ opacity: 1, scale: 1 }}
@@ -190,13 +420,13 @@ export default function Home() {
         <div className="relative overflow-hidden bg-[#1f4e79] rounded-[2.5rem] p-10 md:p-12 shadow-2xl">
           {/* Decorative shapes */}
           <div className="absolute top-0 right-0 w-[40rem] h-[40rem] bg-gradient-to-bl from-[#59b9f6] to-transparent opacity-20 rounded-full translate-x-1/3 -translate-y-1/3 blur-3xl pointer-events-none" />
-          
+
           <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-10">
             <div className="text-white max-w-2xl">
               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-sm font-semibold mb-6">
                 <i className="ri-plane-line text-[#59b9f6]"></i> New to traveling?
               </div>
-              <h2 className="font-poppins font-extrabold text-4xl md:text-5xl tracking-tight mb-4">
+              <h2 className="font-poppins font-extrabold text-3xl md:text-5xl tracking-tight mb-4">
                 Unang Lipad
               </h2>
               <p className="text-lg text-white/80 font-medium mb-8 leading-relaxed">
@@ -206,7 +436,7 @@ export default function Home() {
                 Start Reading <i className="ri-arrow-right-line ml-2"></i>
               </Link>
             </div>
-            
+
             <div className="hidden md:flex w-48 h-48 bg-white/10 backdrop-blur-xl border border-white/20 rounded-[2rem] items-center justify-center -rotate-6 hover:rotate-0 transition-transform duration-500 shadow-2xl">
               <i className="ri-passport-fill text-[6rem] text-white opacity-90 drop-shadow-xl"></i>
             </div>
@@ -269,11 +499,11 @@ export default function Home() {
       </section>
 
       {/* Services */}
-      <motion.section 
+      <motion.section
         className="px-6 py-16 max-w-7xl mx-auto"
         initial="hidden" whileInView="show" viewport={{ once: true }} variants={containerVariants}
       >
-        <h2 className="font-poppins font-extrabold text-3xl text-dark text-center mb-10">Our Services</h2>
+        <h2 className="font-poppins font-extrabold text-2xl sm:text-3xl text-dark text-center mb-10">Our Services</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {servicesList.map((service, idx) => (
             <motion.div key={idx} variants={itemVariants}>
@@ -299,13 +529,115 @@ export default function Home() {
             © {new Date().getFullYear()} BYEBYEPINAS. Visa guidance for Filipinos.
           </p>
           <div className="flex gap-4">
-             <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#59b9f6] hover:text-white transition-colors"><i className="ri-facebook-fill text-xl"></i></a>
-             <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#59b9f6] hover:text-white transition-colors"><i className="ri-instagram-line text-xl"></i></a>
-             <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#59b9f6] hover:text-white transition-colors"><i className="ri-twitter-x-line text-xl"></i></a>
+            <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#59b9f6] hover:text-white transition-colors"><i className="ri-facebook-fill text-xl"></i></a>
+            <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#59b9f6] hover:text-white transition-colors"><i className="ri-instagram-line text-xl"></i></a>
+            <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#59b9f6] hover:text-white transition-colors"><i className="ri-twitter-x-line text-xl"></i></a>
           </div>
         </div>
       </footer>
+
+      {/* Flag Modal */}
+      <AnimatePresence>
+        {modalCountry && (
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center px-4 py-6"
+            role="dialog"
+            aria-modal="true"
+            aria-label={`Visa information for ${modalCountry.name}`}
+            onMouseDown={(e) => {
+              if (e.target === e.currentTarget) closeModal();
+            }}
+          >
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="absolute inset-0 bg-[#1f4e79]/60 backdrop-blur-sm pointer-events-none"
+            />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              transition={{ type: "spring", damping: 25, stiffness: 300 }}
+              className="relative w-full max-w-md rounded-3xl bg-white shadow-2xl overflow-hidden"
+            >
+              <div className="relative">
+                <img
+                  src={flagUrl(modalCountry.code, 320)}
+                  srcSet={`${flagUrl(modalCountry.code, 320)} 1x, ${flagUrl(modalCountry.code, 640)} 2x`}
+                  alt={`${modalCountry.name} flag`}
+                  className="w-full h-40 object-cover"
+                  loading="lazy"
+                />
+                <button
+                  type="button"
+                  onClick={closeModal}
+                  className="absolute top-3 right-3 w-10 h-10 rounded-full bg-white/95 backdrop-blur border border-gray-200 flex items-center justify-center text-primary-dark hover:border-primary-light transition"
+                  aria-label="Close"
+                >
+                  <i className="ri-close-line text-xl" />
+                </button>
+              </div>
+
+              <div className="p-6">
+                <h2 className="font-poppins font-extrabold text-2xl text-primary-dark mb-4 text-left">
+                  {modalCountry.name}
+                </h2>
+
+                <div className="mt-5 space-y-3 text-left">
+                  {modalStatus === "error" ? (
+                    <p className="text-sm text-muted">{modalError}</p>
+                  ) : (
+                    <>
+                      <div className="flex items-center justify-between gap-4">
+                        <span className="inline-flex items-center px-3 py-1 rounded-full bg-primary-light/20 text-primary-dark text-xs font-poppins font-semibold">
+                          Continent
+                        </span>
+                        <span className="text-sm font-manrope text-dark">
+                          {modalInfo?.continent || (modalStatus === "loading" ? "Loading…" : "—")}
+                        </span>
+                      </div>
+
+                      <div className="flex items-center justify-between gap-4">
+                        <span className="inline-flex items-center px-3 py-1 rounded-full bg-primary-light/20 text-primary-dark text-xs font-poppins font-semibold">
+                          Region
+                        </span>
+                        <span className="text-sm font-manrope text-dark">
+                          {modalInfo?.region || (modalStatus === "loading" ? "Loading…" : "—")}
+                        </span>
+                      </div>
+                    </>
+                  )}
+
+                  <div className="flex items-center justify-between gap-4">
+                    <span className="inline-flex items-center px-3 py-1 rounded-full bg-primary-light/20 text-primary-dark text-xs font-poppins font-semibold">
+                      Visa Type
+                    </span>
+                    <span className="text-sm font-manrope text-dark">Tourist Visa</span>
+                  </div>
+
+                  <div className="flex items-center justify-between gap-4">
+                    <span className="inline-flex items-center px-3 py-1 rounded-full bg-primary-light/20 text-primary-dark text-xs font-poppins font-semibold">
+                      Visa Category
+                    </span>
+                    <span className="text-sm font-manrope text-dark">Regular Visa</span>
+                  </div>
+
+                  <div className="flex items-center justify-between gap-4">
+                    <span className="inline-flex items-center px-3 py-1 rounded-full bg-primary-light/20 text-primary-dark text-xs font-poppins font-semibold">
+                      URL Slug
+                    </span>
+                    <span className="text-sm font-manrope text-dark break-all text-right">
+                      {`${slugify(modalCountry.name)}-visa-for-filipinos`}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
-

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import SiteHeader from "../components/SiteHeader";
 import articlesData from "../data/articles.json";
 
@@ -116,13 +117,13 @@ const Articles = ({ onBack }) => {
                         ))}
                       </div>
 
-                      <a
-                        href={article.link}
+                      <Link
+                        to={`/articles/${article.id}`}
                         className="inline-flex items-center text-[#59b9f6] hover:text-primary-dark font-poppins font-bold text-sm transition-colors"
                       >
                         Read Post
                         <i className="ri-arrow-right-line ml-1 group-hover:translate-x-1.5 transition-transform"></i>
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </motion.div>
