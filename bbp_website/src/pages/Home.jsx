@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import SiteHeader from "../components/SiteHeader";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
+import { ContentData } from "../data/DataContext";
 
 const FLAG_CODES_URL = "https://flagcdn.com/en/codes.json";
 const COUNTRY_INFO_URL = "https://restcountries.com/v3.1/alpha/";
@@ -39,14 +40,6 @@ const popularDestinations = [
   "UAE",
   "Singapore",
   "Australia",
-];
-
-const browseVisaTypes = [
-  { name: "Tourist Visa", icon: "ri-plane-fill" },
-  { name: "Study Visa", icon: "ri-graduation-cap-line" },
-  { name: "Digital Nomad Visa", icon: "ri-macbook-line" },
-  { name: "Family Reunification", icon: "ri-group-line" },
-  { name: "Retirement", icon: "ri-home-5-line" },
 ];
 
 const popularGuides = [
@@ -96,126 +89,145 @@ const itemVariants = {
 };
 
 export default function Home() {
-  const [search, setSearch] = useState("");
+ const [search, setSearch] = useState("");
+const { VisaTypes, SetVisaTypes, SetVisaCategory, SetArticles } = ContentData();
 
-  const [selectedCode, setSelectedCode] = useState(null);
-  const [codes, setCodes] = useState([]);
-  const [status, setStatus] = useState("loading"); // loading | ready | error
-  const [errorMessage, setErrorMessage] = useState("");
+const [selectedCode, setSelectedCode] = useState(null);
+const [codes, setCodes] = useState([]);
+const [status, setStatus] = useState("loading");
+const [errorMessage, setErrorMessage] = useState("");
 
-  const [modalCountry, setModalCountry] = useState(null);
-  const [modalStatus, setModalStatus] = useState("idle");
-  const [modalError, setModalError] = useState("");
-  const [modalInfo, setModalInfo] = useState(null);
+const [modalCountry, setModalCountry] = useState(null);
+const [modalStatus, setModalStatus] = useState("idle");
+const [modalError, setModalError] = useState("");
+const [modalInfo, setModalInfo] = useState(null);
 
-  useEffect(() => {
-    let cancelled = false;
+useEffect(() => {
+  let cancelled = false;
 
-    async function load() {
-      try {
+  async function load() {
+    try {
+      if (!modalCountry) {
         setStatus("loading");
         setErrorMessage("");
 
-        const res = await fetch(FLAG_CODES_URL, { cache: "force-cache" });
-        if (!res.ok) throw new Error(`Failed to load country list (${res.status})`);
-        const json = await res.json();
+        const [visaTypesRes, visaCategoryRes, visaArticlesRes, flagsRes] = await Promise.all([
+          fetch("http://localhost:1337/api/visa-types"),
+          fetch("http://localhost:1337/api/visa-categories"),
+          fetch("http://localhost:1337/api/articles?populate=tags&populate=takeaway"),
+          fetch("https://flagcdn.com/en/codes.json", { cache: "force-cache" })
+        ]);
 
-        const entries = Object.entries(json)
+        if (!visaTypesRes.ok || !flagsRes.ok) {
+          throw new Error("Failed to load data");
+        }
+
+        const [visaTypesJson, visaCategoryJson, visaArticlesJson, flagsJson] = await Promise.all([
+          visaTypesRes.json(),
+          visaCategoryRes.json(),
+          visaArticlesRes.json(),
+          flagsRes.json()
+        ]);
+
+        if (cancelled) return;
+
+        SetVisaTypes(visaTypesJson.data);
+        SetVisaCategory(visaCategoryJson.data);
+        SetArticles(visaArticlesJson.data);
+
+        const entries = Object.entries(flagsJson)
           .filter(([code]) => /^[a-z]{2}$/i.test(code))
           .map(([code, name]) => ({ code: code.toLowerCase(), name }))
           .sort((a, b) => a.name.localeCompare(b.name));
 
-        if (cancelled) return;
         setCodes(entries);
         setStatus("ready");
-      } catch (err) {
-        if (cancelled) return;
-        setStatus("error");
-        setErrorMessage(err instanceof Error ? err.message : "Failed to load countries");
       }
-    }
 
-    load();
-    return () => { cancelled = true; };
-  }, []);
-
-  const filtered = useMemo(() => {
-    const q = search.trim().toLowerCase();
-    if (!q) return codes;
-    return codes.filter((c) => c.name.toLowerCase().includes(q));
-  }, [codes, search]);
-
-  function handleSelect(country) {
-    setSelectedCode(country.code);
-  }
-
-  function openModal(country) {
-    setModalCountry(country);
-  }
-
-  function closeModal() {
-    setModalCountry(null);
-    setModalStatus("idle");
-    setModalError("");
-    setModalInfo(null);
-  }
-
-  useEffect(() => {
-    if (!modalCountry) return;
-    let cancelled = false;
-
-    async function loadCountryInfo() {
-      try {
+      if (modalCountry) {
         setModalStatus("loading");
         setModalError("");
-        setModalInfo(null);
 
-        const res = await fetch(`${COUNTRY_INFO_URL}${modalCountry.code}`, {
-          cache: "force-cache",
+        const res = await fetch(`https://restcountries.com/v3.1/alpha/${modalCountry.code}`, {
+          cache: "force-cache"
         });
-        if (!res.ok) throw new Error(`Failed to load country info (${res.status})`);
+
+        if (!res.ok) throw new Error("Failed to load country");
+
         const json = await res.json();
-
         const item = Array.isArray(json) ? json[0] : json;
-        const continent = item?.region ? String(item.region) : "";
-        const region = item?.subregion ? normalizeSubregion(item.subregion) : "";
 
         if (cancelled) return;
-        setModalInfo({ continent, region });
+
+        setModalInfo({
+          continent: item?.region || "",
+          region: item?.subregion ? normalizeSubregion(item.subregion) : ""
+        });
+
         setModalStatus("ready");
-      } catch (err) {
-        if (cancelled) return;
+      }
+    } catch (err) {
+      if (cancelled) return;
+
+      if (!modalCountry) {
+        setStatus("error");
+        setErrorMessage(err instanceof Error ? err.message : "Failed to load data");
+      } else {
         setModalStatus("error");
-        setModalError(err instanceof Error ? err.message : "Failed to load country info");
+        setModalError(err instanceof Error ? err.message : "Failed to load country");
       }
     }
+  }
 
-    loadCountryInfo();
-    return () => { cancelled = true; };
-  }, [modalCountry]);
+  load();
 
-  useEffect(() => {
-    if (!modalCountry) return;
-
-    function onKeyDown(e) {
-      if (e.key === "Escape") closeModal();
+  function onKeyDown(e) {
+    if (e.key === "Escape") {
+      setModalCountry(null);
+      setModalStatus("idle");
+      setModalError("");
+      setModalInfo(null);
     }
+  }
 
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  }, [modalCountry]);
+  if (modalCountry) window.addEventListener("keydown", onKeyDown);
 
-  const handleSearch = (e) => {
-    e.preventDefault();
+  return () => {
+    cancelled = true;
+    window.removeEventListener("keydown", onKeyDown);
   };
+}, [modalCountry]);
+
+const filtered = useMemo(() => {
+  const q = search.trim().toLowerCase();
+  if (!q) return codes;
+  return codes.filter(c => c.name.toLowerCase().includes(q));
+}, [codes, search]);
+
+function handleSelect(country) {
+  setSelectedCode(country.code);
+}
+
+function openModal(country) {
+  setModalCountry(country);
+}
+
+function closeModal() {
+  setModalCountry(null);
+  setModalStatus("idle");
+  setModalError("");
+  setModalInfo(null);
+}
+
+const handleSearch = (e) => {
+  e.preventDefault();
+};
 
   return (
     <div className="bg-[#f8fbfe] text-dark font-manrope min-h-screen selection:bg-primary-light selection:text-white">
       <SiteHeader variant="light" />
 
-      {/* Hero Section */}
       <section className="relative px-6 pt-20 pb-24 md:pt-32 md:pb-32 overflow-hidden flex flex-col items-center text-center">
-        {/* Abstract Background Blobs */}
         <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-[#59b9f6]/20 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-[-10%] right-[-10%] w-[30%] h-[50%] bg-[#1f4e79]/10 rounded-full blur-3xl pointer-events-none" />
 
@@ -255,7 +267,6 @@ export default function Home() {
           </form>
         </motion.div>
 
-        {/* Interactive Flags Grid */}
         <motion.div
           className="bg-white/60 backdrop-blur-3xl rounded-[2rem] border border-white shadow-[0_8px_30px_rgb(0,0,0,0.04)] p-6 sm:p-8 text-left w-full max-w-7xl mx-auto relative z-10"
           initial={{ opacity: 0, y: 30 }}
@@ -264,7 +275,7 @@ export default function Home() {
         >
           {status === "error" ? (
             <div className="text-sm text-muted text-center">
-              <p className="font-bold text-red-500 mb-1">Couldn’t load flags.</p>
+              <p className="font-bold text-red-500 mb-1">Couldn't load flags.</p>
               <p className="mb-2">{errorMessage}</p>
               <p>Check your internet connection and refresh.</p>
             </div>
@@ -352,7 +363,6 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* Popular Destinations */}
       <motion.section
         className="px-6 py-12 max-w-7xl mx-auto relative z-10"
         initial="hidden" whileInView="show" viewport={{ once: true, margin: "-50px" }}
@@ -377,7 +387,6 @@ export default function Home() {
         </motion.div>
       </motion.section>
 
-      {/* Browse by Visa Type */}
       <motion.section
         className="px-6 py-16 max-w-7xl mx-auto"
         initial="hidden" whileInView="show" viewport={{ once: true, margin: "-50px" }}
@@ -393,23 +402,21 @@ export default function Home() {
         </motion.div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
-          {browseVisaTypes.map((visa, idx) => (
-            <motion.div key={visa.name} variants={itemVariants}>
+          {VisaTypes.map((visa, index) => (
               <Link
-                to={`/visas/${encodeURIComponent(visa.name)}`}
+              key={visa.id}
+                to={`/visas/${visa.title}`}
                 className="group bg-white rounded-3xl p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 hover:border-[#59b9f6]/30 flex flex-col items-center justify-center text-center h-full hover:-translate-y-2 hover:shadow-[0_20px_40px_rgb(89,185,246,0.12)] transition-all duration-300"
               >
                 <div className="w-16 h-16 rounded-2xl bg-[#f0f7fb] group-hover:bg-[#59b9f6] group-hover:text-white text-[#1f4e79] flex items-center justify-center mb-5 transition-colors duration-300">
-                  <i className={`${visa.icon} text-3xl`}></i>
+                  <i className={`ri-${visa.logo}-fill text-3xl`}></i>
                 </div>
-                <span className="font-poppins font-bold text-[15px] text-dark leading-tight">{visa.name}</span>
+                <span className="font-poppins font-bold text-[15px] text-dark leading-tight">{visa.title}</span>
               </Link>
-            </motion.div>
           ))}
         </div>
       </motion.section>
 
-      {/* Unang Lipad – First Time Travelers */}
       <motion.section
         className="px-6 py-12 max-w-7xl mx-auto"
         initial={{ opacity: 0, scale: 0.95 }}
@@ -418,7 +425,6 @@ export default function Home() {
         transition={{ duration: 0.5 }}
       >
         <div className="relative overflow-hidden bg-[#1f4e79] rounded-[2.5rem] p-10 md:p-12 shadow-2xl">
-          {/* Decorative shapes */}
           <div className="absolute top-0 right-0 w-[40rem] h-[40rem] bg-gradient-to-bl from-[#59b9f6] to-transparent opacity-20 rounded-full translate-x-1/3 -translate-y-1/3 blur-3xl pointer-events-none" />
 
           <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-10">
@@ -444,9 +450,7 @@ export default function Home() {
         </div>
       </motion.section>
 
-      {/* Two-Column Guides & Updates */}
       <section className="px-6 py-16 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
-        {/* Popular Tourist Visa Guides */}
         <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={containerVariants}>
           <h2 className="font-poppins font-extrabold text-2xl text-dark mb-6 flex items-center gap-3">
             <i className="ri-guide-fill text-[#59b9f6]"></i> Top Visa Guides
@@ -475,7 +479,6 @@ export default function Home() {
           </div>
         </motion.div>
 
-        {/* Recent Updates */}
         <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={containerVariants}>
           <h2 className="font-poppins font-extrabold text-2xl text-dark mb-6 flex items-center gap-3">
             <i className="ri-notification-3-fill text-[#59b9f6]"></i> Recent Updates
@@ -498,7 +501,6 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* Services */}
       <motion.section
         className="px-6 py-16 max-w-7xl mx-auto"
         initial="hidden" whileInView="show" viewport={{ once: true }} variants={containerVariants}
@@ -519,7 +521,6 @@ export default function Home() {
         </div>
       </motion.section>
 
-      {/* Modern Footer */}
       <footer className="bg-[#1f4e79] mt-12 py-12 rounded-t-[3rem] text-white/80">
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="font-poppins font-extrabold text-2xl tracking-tighter text-white">
@@ -536,7 +537,6 @@ export default function Home() {
         </div>
       </footer>
 
-      {/* Flag Modal */}
       <AnimatePresence>
         {modalCountry && (
           <div

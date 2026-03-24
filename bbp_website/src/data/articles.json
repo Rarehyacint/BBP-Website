@@ -1,142 +1,342 @@
 [
-  {
-    "id": "singapore-visa-guide",
-    "title": "Singapore Visa Requirements for Filipino Tourists: Complete Guide",
-    "summary": "Step-by-step guide to applying for a Singapore tourist visa including online application process, required documents, and processing time for Filipino passport holders.",
-    "date": "Feb 23, 2026",
-    "tags": ["Singapore", "Tourist Visa"],
-    "author": "Maria Santos",
-    "readTime": "8 min read",
-    "content": "Singapore remains one of the top destinations for Filipinos. While it is visa-free for visits under 30 days, there are still crucial requirements you need to prepare to ensure a smooth entry.\n\nFrom the SG Arrival Card to proof of accommodation, this guide covers everything you need to know about preparing your travel documents.\n\nWe recommend starting your preparation at least two weeks before your flight to avoid last-minute stress.",
-    "keyTakeaways": [
-      "Always fill out the SG Arrival Card 3 days before entry",
-      "Have a printed copy of your return flight ticket",
-      "Ensure your passport has at least 6 months validity",
-      "Download the Singpass app for easier navigation",
-      "Keep digital copies of your hotel booking on your phone"
-    ],
-    "additionalResources": "Visit the official ICA website for the latest updates on entry requirements and e-gate eligibility for PH citizens.",
-    "proTip": "Use the automated lanes if you have a biometric passport; it saves a lot of time at Changi Airport!",
-    "category": "Visa Guides"
-  },
-  {
-    "id": "first-time-travel-checklist",
-    "title": "Your First International Flight: A Complete Checklist",
-    "summary": "Everything you need to know before boarding your first international flight.",
-    "date": "February 16, 2026",
-    "tags": ["Tips", "First Time", "Unang Lipad"],
-    "author": "Maria Santos",
-    "readTime": "8 min read",
-    "content": "Stepping into the airport for your first international flight can be overwhelming. This checklist is designed to keep you organized and confident.\n\nFrom check-in procedures to the immigration interview, we break down each step so you know exactly what to expect.\n\nTraveling is an adventure, but being prepared makes the journey much more enjoyable.",
-    "keyTakeaways": [
-      "Always prepare your documents well in advance",
-      "Double-check requirements specific to your destination",
-      "Keep both physical and digital copies of important documents",
-      "Stay updated with the latest travel advisories",
-      "Don't hesitate to ask questions at immigration or airport staff"
-    ],
-    "additionalResources": "For more information and updates, make sure to check official government websites and consult with travel professionals. Every traveler's situation is unique, so tailor these guidelines to your specific needs.",
-    "proTip": "Always arrive at the airport earlier than required. This gives you buffer time to handle any unexpected situations calmly.",
-    "category": "Unang Lipad"
-  },
-  {
-    "id": "us-visa-interview-tips",
-    "title": "US B1/B2 Tourist Visa Interview Tips",
-    "summary": "Ace your US visa interview with these top tips for Filipino applicants, including what to wear, how to answer common questions, and documents to bring.",
-    "date": "Feb 18, 2026",
-    "tags": ["USA", "Tourist Visa"],
-    "author": "Ramon Dela Cruz",
-    "readTime": "10 min read",
-    "content": "The US visa interview is often the most nerve-wracking part of the application. However, the key to success is honesty and preparation.\n\nConsular officers are looking for strong ties to your home country. Be prepared to explain your itinerary and how you plan to fund your trip.\n\nRemember, the interview is usually very short, so clear and concise answers are vital.",
-    "keyTakeaways": [
-      "Be honest and consistent with your DS-160 form",
-      "Dress professionally but comfortably",
-      "Focus on explaining your strong ties to the Philippines",
-      "Bring original documents but don't volunteer them unless asked",
-      "Practice common interview questions with a friend"
-    ],
-    "additionalResources": "Check the US Embassy in Manila's website for current wait times and any updated health protocols.",
-    "proTip": "Don't bring liquids or large electronics into the embassy; the security line is strict!",
-    "category": "Visa Guides"
-  },
-  {
-    "id": "uk-student-visa-guide",
-    "title": "How to get a UK Student Visa",
-    "summary": "Comprehensive guide for Filipino students planning to study in the United Kingdom. Learn about the CAS, financial requirements, and application steps.",
-    "date": "Feb 10, 2026",
-    "tags": ["UK", "Study Visa"],
-    "author": "Elena Garcia",
-    "readTime": "12 min read",
-    "content": "Studying in the UK is a life-changing experience. To get there, you'll need a Student Visa (formerly Tier 4).\n\nYour journey starts with the Confirmation of Acceptance for Studies (CAS) from your chosen university. This document is the foundation of your application.\n\nYou'll also need to prove your English language proficiency and show that you have enough funds to support yourself during your stay.",
-    "keyTakeaways": [
-      "Secure your CAS before starting the visa application",
-      "Ensure your bank statements meet the 28-day rule",
-      "Prepare for a credibility interview if required",
-      "Check if your course requires an ATAS certificate",
-      "Pay the Immigration Health Surcharge as part of your application"
-    ],
-    "additionalResources": "The UK Council for International Student Affairs (UKCISA) provides excellent advice on student life and regulations.",
-    "proTip": "Apply as early as possible—up to 6 months before your course starts!",
-    "category": "Visa Guides"
-  },
-  {
-    "id": "spain-digital-nomad-guide",
-    "title": "Spain Digital Nomad Visa: A Guide for Freelancers",
-    "summary": "Find out if you qualify for the new Spain Digital Nomad Visa. We cover income requirements, tax implications, and the application procedure.",
-    "date": "Jan 25, 2026",
-    "tags": ["Spain", "Digital Nomad Visa"],
-    "author": "Carlos Mendoza",
-    "readTime": "9 min read",
-    "content": "Dreaming of working from a sun-drenched cafe in Barcelona? The Spain Digital Nomad Visa makes this possible for non-EU citizens.\n\nThis visa is designed for remote workers and freelancers who can prove they earn a certain income from clients outside of Spain.\n\nIt offers a path to residency and allows you to travel freely within the Schengen Area while enjoying the Spanish lifestyle.",
-    "keyTakeaways": [
-      "Verify that your income meets the minimum monthly threshold",
-      "Ensure you've been working remotely for at least one year",
-      "Get a background check from the NBI and any other country you lived in",
-      "Check the specialized tax regime (Beckham Law) eligibility",
-      "Choose between applying from at home or while in Spain on a tourist visa"
-    ],
-    "additionalResources": "The Spanish Ministry of Foreign Affairs has the detailed list of required certifications and translations.",
-    "proTip": "Translate all your documents into Spanish using a sworn translator (traductor jurado) to avoid delays.",
-    "category": "Visa Guides"
-  },
-  {
-    "id": "philippine-srrv-guide",
-    "title": "Retiring in the Philippines: SRRV Guide",
-    "summary": "Complete information on the Special Resident Retiree's Visa for foreign nationals who wish to retire in the Philippines or for returning Filipinos.",
-    "date": "Jan 12, 2026",
-    "tags": ["Philippines", "Retirement"],
-    "author": "Liza Tan",
-    "readTime": "11 min read",
-    "content": "The Philippines is a top retirement destination thanks to its low cost of living and hospitable culture. The SRRV is the primary visa for retirees.\n\nThe program offers multiple options depending on your age and health status. It provides permanent residency and various tax exemptions.\n\nWhether you're a former Filipino citizen looking to return or a foreign national seeking a tropical home, this guide explains the process clearly.",
-    "keyTakeaways": [
-      "Determine which SRRV option (Smile, Classic, or Human Touch) fits you",
-      "Open a dollar deposit account in a PRA-authorized bank",
-      "Gather your health certificate and police clearance from your home country",
-      "Consider the SRRV Courtesy for former PH citizens",
-      "Plan for the annual PRA fee of $360"
-    ],
-    "additionalResources": "Contact the Philippine Retirement Authority (PRA) for a personalized list of requirements and accredited agents.",
-    "proTip": "Use an accredited marketing agent; they can handle the bank deposits and paperwork for a smoother experience.",
-    "category": "Visa Guides"
-  },
-  {
-    "id": "canada-family-sponsorship-guide",
-    "title": "Canada Family Sponsorship Program 2026",
-    "summary": "Everything you need to know about sponsoring your spouse, partner, or dependent children to join you in Canada.",
-    "date": "Jan 5, 2026",
-    "tags": ["Canada", "Family Reunification"],
-    "author": "Mark Wilson",
-    "readTime": "15 min read",
-    "content": "Reuniting with family is a priority for the Canadian government. The Family Sponsorship program allows permanent residents and citizens to bring their loved ones to Canada.\n\nSponsoring a spouse or child involves dual applications: one to be a sponsor and one for the sponsored person to become a permanent resident.\n\nIt's a long process, but seeing your family together in Canada is worth the effort.",
-    "keyTakeaways": [
-      "Confirm your eligibility as a sponsor (income and residency)",
-      "Collect extensive proof of your relationship (photos, chats, etc.)",
-      "Complete both the sponsorship and permanent residence application forms",
-      "Pay the processing fees and biometrics fee upfront",
-      "Keep track of your application status through the IRCC portal"
-    ],
-    "additionalResources": "The IRCC website has an interactive tool to check which forms you need based on who you are sponsoring.",
-    "proTip": "Submit as many relationship proofs as possible. 'Too much' is rarely an issue when proving a genuine marriage!",
-    "category": "Visa Guides"
-  }
+{
+"title": "Japan Visa Requirements for Filipino Tourists: Complete Guide",
+"type": "Tourist",
+"headline": "Learn the full process of applying for a Japan tourist visa including documents, embassy requirements, and tips for Filipino applicants.",
+"date": "Feb 20, 2026",
+"author": "Maria Santos",
+"content": "Japan has become one of the most popular destinations for Filipino travelers. Applying for a tourist visa requires submitting documents through accredited travel agencies.\n\nThis guide explains the full process, including financial documents, itinerary planning, and application timelines.",
+"takeaway": [
+"Submit bank certificate and bank statements",
+"Prepare a detailed travel itinerary",
+"Apply through accredited travel agencies",
+"Ensure passport validity of 6 months",
+"Book refundable accommodations if possible"
+],
+"tags": ["Visa Guides","Requirements"],
+"publishedAt": null
+},
+{
+"title": "Thailand Travel Tips for First-Time Filipino Travelers",
+"type": "Travel",
+"headline": "Essential travel advice for Filipinos visiting Thailand for the first time including budgeting, transportation, and safety tips.",
+"date": "Feb 18, 2026",
+"author": "Maria Santos",
+"content": "Thailand is one of the easiest destinations for Filipino tourists because it is visa-free. However, preparation is still important.\n\nUnderstanding transportation systems, currency exchange, and tourist scams can make your trip smoother.",
+"takeaway": [
+"Exchange small amounts of money before traveling",
+"Use Grab instead of random taxis",
+"Respect temples and dress appropriately",
+"Bring a universal adapter",
+"Keep emergency cash separate"
+],
+"tags": ["Travel Tips","Unang Lipad"],
+"publishedAt": null
+},
+{
+"title": "South Korea Tourist Visa Guide for Filipinos",
+"type": "Tourist",
+"headline": "Everything Filipinos need to know about applying for a South Korea tourist visa including requirements and application tips.",
+"date": "Feb 17, 2026",
+"author": "Maria Santos",
+"content": "South Korea requires Filipino travelers to apply for a tourist visa before visiting. Preparation of documents is important to avoid rejection.\n\nThis article explains the requirements and best practices for approval.",
+"takeaway": [
+"Submit employment certificate",
+"Provide bank certificate",
+"Include travel itinerary",
+"Prepare hotel reservations",
+"Apply at least 3 weeks before travel"
+],
+"tags": ["Visa Guides","Requirements"],
+"publishedAt": null
+},
+{
+"title": "Best Places to Visit in Bali for Filipino Travelers",
+"type": "Travel",
+"headline": "Explore the top tourist attractions in Bali including temples, beaches, and scenic rice terraces.",
+"date": "Feb 16, 2026",
+"author": "Maria Santos",
+"content": "Bali is famous for its beautiful beaches and rich culture. Filipino travelers enjoy Bali because of its affordable resorts and relaxing atmosphere.",
+"takeaway": [
+"Visit Uluwatu Temple during sunset",
+"Explore Tegallalang Rice Terraces",
+"Book scooter rentals early",
+"Try local Balinese food",
+"Visit Nusa Penida island"
+],
+"tags": ["Destination Guides","Travel Tips"],
+"publishedAt": null
+},
+{
+"title": "Schengen Visa Guide for Filipinos Visiting Europe",
+"type": "Tourist",
+"headline": "Complete explanation of Schengen visa application process for Filipino travelers planning to visit Europe.",
+"date": "Feb 15, 2026",
+"author": "Maria Santos",
+"content": "The Schengen visa allows Filipino travelers to visit multiple European countries with a single visa.\n\nHowever, documentation requirements can be strict, so preparation is key.",
+"takeaway": [
+"Apply through the embassy of main destination",
+"Provide travel insurance coverage",
+"Submit proof of accommodation",
+"Prepare roundtrip flight reservation",
+"Show financial capability"
+],
+"tags": ["Visa Guides","Requirements"],
+"publishedAt": null
+},
+{
+"title": "Dubai Travel Guide for Filipino Tourists",
+"type": "Travel",
+"headline": "Discover Dubai’s famous attractions including Burj Khalifa, desert safari, and luxury shopping destinations.",
+"date": "Feb 14, 2026",
+"author": "Maria Santos",
+"content": "Dubai offers modern architecture, luxury shopping, and desert adventures.\n\nFilipino tourists love visiting Dubai because of its vibrant culture and world-famous attractions.",
+"takeaway": [
+"Visit Burj Khalifa observation deck",
+"Try a desert safari experience",
+"Explore Dubai Mall",
+"Respect local customs",
+"Travel during cooler months"
+],
+"tags": ["Destination Guides"],
+"publishedAt": null
+},
+{
+"title": "Essential Travel Requirements for Filipino International Travelers",
+"type": "Travel",
+"headline": "Important documents Filipinos need before leaving the Philippines including passport validity and immigration requirements.",
+"date": "Feb 13, 2026",
+"author": "Maria Santos",
+"content": "Before leaving the Philippines, travelers must prepare several important documents to avoid immigration issues.\n\nThis guide explains the most common requirements.",
+"takeaway": [
+"Passport must be valid for 6 months",
+"Prepare return ticket",
+"Bring hotel booking confirmation",
+"Have proof of financial capability",
+"Print travel itinerary"
+],
+"tags": ["Requirements","Unang Lipad"],
+"publishedAt": null
+},
+{
+"title": "Taiwan Travel Guide for Filipino Tourists",
+"type": "Travel",
+"headline": "Explore Taiwan’s night markets, temples, and scenic mountains perfect for Filipino travelers.",
+"date": "Feb 12, 2026",
+"author": "Maria Santos",
+"content": "Taiwan is known for its vibrant street food culture and modern cities.\n\nMany Filipinos enjoy Taiwan because of its visa-free policy and friendly locals.",
+"takeaway": [
+"Visit Taipei 101",
+"Try street food at night markets",
+"Ride the Maokong cable car",
+"Explore Jiufen old street",
+"Use EasyCard for transportation"
+],
+"tags": ["Destination Guides","Travel Tips"],
+"publishedAt": null
+},
+{
+"title": "Hong Kong Travel Tips for First-Time Filipino Visitors",
+"type": "Travel",
+"headline": "Helpful tips for navigating Hong Kong including transportation, food, and popular attractions.",
+"date": "Feb 11, 2026",
+"author": "Maria Santos",
+"content": "Hong Kong is a fast-paced city filled with attractions and cultural experiences.\n\nFilipino travelers should plan ahead to maximize their trip.",
+"takeaway": [
+"Get an Octopus card",
+"Visit Victoria Peak",
+"Explore street markets",
+"Try dim sum restaurants",
+"Use MTR for fast transportation"
+],
+"tags": ["Travel Tips","Unang Lipad"],
+"publishedAt": null
+},
+{
+"title": "Italy Tourist Visa Guide for Filipinos",
+"type": "Tourist",
+"headline": "Learn how Filipino travelers can apply for an Italy tourist visa under the Schengen system.",
+"date": "Feb 10, 2026",
+"author": "Maria Santos",
+"content": "Italy is one of the most beautiful destinations in Europe with historical landmarks and world-famous cuisine.\n\nFilipinos must apply for a Schengen visa before visiting.",
+"takeaway": [
+"Submit complete financial documents",
+"Include travel insurance",
+"Provide confirmed itinerary",
+"Prepare embassy appointment",
+"Apply early before travel"
+],
+"tags": ["Visa Guides","Requirements","Destination Guides"],
+"publishedAt": null
+},
+{
+"title": "Paris Travel Guide for Filipino Tourists",
+"type": "Travel",
+"headline": "Explore the top attractions in Paris including the Eiffel Tower, Louvre Museum, and charming streets.",
+"date": "Feb 09, 2026",
+"author": "Maria Santos",
+"content": "Paris is one of the most romantic cities in the world.\n\nFrom iconic landmarks to world-class cuisine, there are many experiences Filipino travelers can enjoy.",
+"takeaway": [
+"Visit Eiffel Tower at night",
+"Explore Louvre Museum",
+"Walk along the Seine River",
+"Try authentic French pastries",
+"Use metro for easy travel"
+],
+"tags": ["Destination Guides"],
+"publishedAt": null
+},
+{
+"title": "Flight Preparation Guide for First-Time Filipino Travelers",
+"type": "Travel",
+"headline": "A beginner-friendly guide for Filipinos flying internationally for the first time.",
+"date": "Feb 08, 2026",
+"author": "Maria Santos",
+"content": "Flying abroad for the first time can be overwhelming.\n\nUnderstanding airport procedures and travel preparation can help reduce anxiety.",
+"takeaway": [
+"Arrive at the airport early",
+"Prepare immigration documents",
+"Check airline baggage limits",
+"Keep passport accessible",
+"Follow airport signage"
+],
+"tags": ["Unang Lipad","Travel Tips"],
+"publishedAt": null
+},
+{
+"title": "Canada Tourist Visa Guide for Filipinos",
+"type": "Tourist",
+"headline": "Step-by-step guide for Filipino travelers applying for a Canada visitor visa.",
+"date": "Feb 07, 2026",
+"author": "Maria Santos",
+"content": "Canada requires Filipino travelers to apply for a visitor visa before entering the country.\n\nThis guide explains the application process and required documents.",
+"takeaway": [
+"Create IRCC account online",
+"Upload supporting documents",
+"Provide biometrics",
+"Submit proof of funds",
+"Wait for visa processing"
+],
+"tags": ["Visa Guides","Requirements"],
+"publishedAt": null
+},
+{
+"title": "Malaysia Travel Guide for Filipino Tourists",
+"type": "Travel",
+"headline": "Discover Malaysia’s vibrant cities, food culture, and iconic attractions.",
+"date": "Feb 06, 2026",
+"author": "Maria Santos",
+"content": "Malaysia offers diverse cultural experiences and delicious cuisine.\n\nIt is a favorite destination among Filipino travelers due to its affordability.",
+"takeaway": [
+"Visit Petronas Towers",
+"Explore Batu Caves",
+"Try Malaysian street food",
+"Use Grab for transportation",
+"Visit night markets"
+],
+"tags": ["Destination Guides"],
+"publishedAt": null
+},
+{
+"title": "Immigration Tips for Filipino Travelers Leaving the Philippines",
+"type": "Travel",
+"headline": "Important immigration tips to avoid offloading issues for Filipino travelers.",
+"date": "Feb 05, 2026",
+"author": "Maria Santos",
+"content": "Filipino travelers must prepare documents carefully when leaving the Philippines.\n\nImmigration officers may ask questions regarding your travel purpose.",
+"takeaway": [
+"Prepare return tickets",
+"Bring proof of employment",
+"Show hotel bookings",
+"Be honest with immigration questions",
+"Have financial proof ready"
+],
+"tags": ["Requirements","Travel Tips"],
+"publishedAt": null
+},
+{
+"title": "Australia Tourist Visa Guide for Filipinos",
+"type": "Tourist",
+"headline": "Everything you need to know about applying for an Australian tourist visa as a Filipino traveler.",
+"date": "Feb 04, 2026",
+"author": "Maria Santos",
+"content": "Australia requires Filipino travelers to apply for a visitor visa online.\n\nProper documentation will increase your chances of approval.",
+"takeaway": [
+"Create ImmiAccount",
+"Upload financial documents",
+"Submit employment proof",
+"Provide travel itinerary",
+"Wait for visa decision"
+],
+"tags": ["Visa Guides","Requirements"],
+"publishedAt": null
+},
+{
+"title": "Best Budget Travel Tips for Filipino Tourists",
+"type": "Travel",
+"headline": "Learn how Filipino travelers can save money while exploring international destinations.",
+"date": "Feb 03, 2026",
+"author": "Maria Santos",
+"content": "Traveling abroad does not have to be expensive.\n\nPlanning ahead and using smart budgeting strategies can help you travel more often.",
+"takeaway": [
+"Book flights early",
+"Use travel comparison sites",
+"Stay in budget accommodations",
+"Eat local food",
+"Travel during off-peak seasons"
+],
+"tags": ["Travel Tips"],
+"publishedAt": null
+},
+{
+"title": "Vietnam Travel Guide for Filipino Tourists",
+"type": "Travel",
+"headline": "Explore Vietnam’s culture, food, and historical sites perfect for Filipino travelers.",
+"date": "Feb 02, 2026",
+"author": "Maria Santos",
+"content": "Vietnam offers incredible food, culture, and landscapes.\n\nMany Filipino tourists enjoy visiting Hanoi, Ho Chi Minh City, and Ha Long Bay.",
+"takeaway": [
+"Visit Ha Long Bay",
+"Try Vietnamese street food",
+"Explore Hanoi old quarter",
+"Use ride-hailing apps",
+"Visit historical museums"
+],
+"tags": ["Destination Guides","Travel Tips"],
+"publishedAt": null
+},
+{
+"title": "Philippine Airport Departure Requirements for Travelers",
+"type": "Travel",
+"headline": "Important requirements Filipino travelers must prepare before departing the Philippines.",
+"date": "Feb 01, 2026",
+"author": "Maria Santos",
+"content": "Before boarding an international flight, Filipino travelers must present several important documents.\n\nThis guide explains what you should prepare before arriving at the airport.",
+"takeaway": [
+"Valid passport",
+"Confirmed flight ticket",
+"Hotel reservation",
+"Travel insurance",
+"Immigration clearance"
+],
+"tags": ["Requirements","Unang Lipad"],
+"publishedAt": null
+},
+{
+"title": "London Travel Guide for Filipino Tourists",
+"type": "Travel",
+"headline": "Discover London’s famous landmarks including Big Ben, Buckingham Palace, and the Tower of London.",
+"date": "Jan 30, 2026",
+"author": "Maria Santos",
+"content": "London is one of the most historic cities in the world.\n\nFrom museums to royal landmarks, Filipino travelers will find countless attractions to explore.",
+"takeaway": [
+"Visit Buckingham Palace",
+"Explore British Museum",
+"Ride the London Eye",
+"Walk along the Thames",
+"Use the London Underground"
+],
+"tags": ["Destination Guides"],
+"publishedAt": null
+}
 ]

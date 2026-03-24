@@ -2,15 +2,14 @@ import React, { useMemo } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import SiteHeader from "../components/SiteHeader";
-import articlesData from "../data/articles.json";
+import { ContentData } from "../data/DataContext";
 
 export default function ArticleContent() {
-  const { id } = useParams();
+  const { content } = useParams();
+  const { Articles } = ContentData();
   const navigate = useNavigate();
 
-  const article = useMemo(() => {
-    return articlesData.find((a) => a.id === id);
-  }, [id]);
+  const article = Articles.find((a) => a.title === content)
 
   if (!article) {
     return (
@@ -29,8 +28,6 @@ export default function ArticleContent() {
     );
   }
 
-  // Related articles (mock 3 items from JSON that are NOT the current one)
-  const relatedArticles = articlesData.filter((a) => a.id !== id).slice(0, 3);
 
   const scrollToSection = (e, targetId) => {
     e.preventDefault();
@@ -69,13 +66,16 @@ export default function ArticleContent() {
             {article.title}
           </h1>
           <p className="text-lg text-white/90 font-medium mb-8 max-w-3xl leading-relaxed">
-            {article.summary}
+            {article.headline}
+          </p>
+          <p className="text-lg text-neutral-300 font-medium mb-8 max-w-3xl leading-relaxed">
+            Courtesy by: {article.author}
           </p>
 
           <div className="flex flex-wrap gap-3">
-            {article.tags.map((tag, idx) => (
-              <span key={idx} className="bg-white/90 text-dark px-4 py-1.5 rounded-full font-bold text-xs tracking-wide shadow-sm">
-                {tag}
+            {article.tags.map((tag) => (
+              <span key={tag.id} className="bg-green-800 text-dark px-4 py-1.5 rounded-full font-bold text-xs tracking-wide shadow-sm">
+                {tag.tags}
               </span>
             ))}
           </div>
@@ -345,30 +345,18 @@ export default function ArticleContent() {
 
               {/* Quick Facts */}
               <div className="bg-[#fcfbf6] border border-[#d7d5d0] rounded-[4px] p-6 shadow-sm">
-                <h3 className="font-bold text-[#136c31] text-[13px] mb-5">Quick Facts:</h3>
+                <h3 className="font-bold text-[#136c31] text-[13px] mb-5">Key Takeaway:</h3>
 
                 <div className="space-y-4">
-                  <div>
-                    <p className="text-[11px] text-dark/60 font-medium mb-0.5">Processing Time</p>
-                    <p className="text-[13px] font-bold text-dark">10–15 working days</p>
+                  {article.takeaway.map((tk, index) => {
+                    return (
+                  <div key={tk.id}>
+                    
+                    <p className="text-[13px] font-bold text-dark"><span className="text-[11px] text-dark/60 font-medium mb-0.5">{index+1}. </span>{tk.key}</p>
                   </div>
-                  <div>
-                    <p className="text-[11px] text-dark/60 font-medium mb-0.5">Validity Period</p>
-                    <p className="text-[13px] font-bold text-dark">Up to 90 days within 180-day period</p>
-                  </div>
-                  <div>
-                    <p className="text-[11px] text-dark/60 font-medium mb-0.5">Cost</p>
-                    <p className="text-[13px] font-bold text-dark">P5,440</p>
-                  </div>
-                  <div>
-                    <p className="text-[11px] text-dark/60 font-medium mb-0.5">Visa Type</p>
-                    <p className="text-[13px] font-bold text-dark">Short-Stay Tourist Visa</p>
-                  </div>
-                  <div>
-                    <p className="text-[11px] text-dark/60 font-medium mb-0.5">Where To Apply</p>
-                    <p className="text-[12px] font-bold text-dark leading-tight mb-2">TLScontact Manila: <span className="font-medium">Proscenium Tower, Makati</span></p>
-                    <p className="text-[12px] font-bold text-dark leading-tight">TLScontact Cebu: <span className="font-medium">Latitude Corporate Center, Cebu Business Park</span></p>
-                  </div>
+                    )
+                  })}
+                  
                 </div>
               </div>
 
@@ -394,7 +382,7 @@ export default function ArticleContent() {
               </div>
 
               {/* Related Visa Guides */}
-              <div>
+              {/* <div>
                 <h3 className="font-poppins font-extrabold text-xl text-dark mb-4">Related Visa Guides</h3>
                 <div className="space-y-4">
                   {relatedArticles.map((rel) => (
@@ -413,7 +401,7 @@ export default function ArticleContent() {
                     </Link>
                   ))}
                 </div>
-              </div>
+              </div> */}
 
             </div>
           </motion.div>

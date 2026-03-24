@@ -1,12 +1,29 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import SiteHeader from "../components/SiteHeader";
-import visasData from "../data/visas.json";
+import { ContentData } from "../data/DataContext.jsx";
 
-const VisaTypePage = ({ visaName, onBack }) => {
+const VisaTypePage = () => {
+
+  const navigate = useNavigate()
+  const { visatitle } = useParams()
+  const { VisaTypes, Articles } = ContentData()
   const [searchQuery, setSearchQuery] = useState("");
+  const [VisatypeInfo, setVisatypeInfo] = useState({});
 
+      useEffect(() => {
+
+        const getInfoVisa = () => {
+          const getVisaType = VisaTypes.find((vt) => vt.title === visatitle)
+
+          setVisatypeInfo(getVisaType)
+        }
+
+        getInfoVisa()
+
+      }, [VisaTypes,Articles])
+ 
   const getIcon = (name) => {
     switch (name) {
       case "Tourist Visa": return "ri-plane-fill";
@@ -18,12 +35,11 @@ const VisaTypePage = ({ visaName, onBack }) => {
     }
   };
 
-  const filteredVisas = visasData.filter((article) => {
-    const matchesVisa = article.tags.includes(visaName);
-    const matchesSearch = article.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      article.summary.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesVisa && matchesSearch;
-  });
+  
+
+  const filteredVisasArticles = Articles.filter((article) => article.author === "Maria Santos" );
+
+
 
   return (
     <div className="min-h-screen bg-background-soft text-dark font-manrope">
@@ -32,14 +48,13 @@ const VisaTypePage = ({ visaName, onBack }) => {
       <main className="relative pt-6 pb-20 px-4 sm:px-6 max-w-7xl mx-auto">
         {/* Back Button */}
         <button
-          onClick={onBack}
+          onClick={()=> navigate(-1)}
           className="group inline-flex items-center text-sm font-poppins font-semibold text-primary-dark hover:text-[#59b9f6] transition-colors mb-8 cursor-pointer bg-white/60 backdrop-blur-xl px-4 py-2 rounded-full shadow-sm border border-white/80"
         >
           <i className="ri-arrow-left-line text-lg mr-2 group-hover:-translate-x-1 transition-transform"></i>
           Back
         </button>
 
-        {/* Header Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -48,14 +63,17 @@ const VisaTypePage = ({ visaName, onBack }) => {
         >
           <div className="flex items-start gap-5">
             <div className="mt-1 h-14 w-14 rounded-2xl bg-gradient-to-tr from-primary-dark to-primary-light flex items-center justify-center text-white shadow-lg shadow-primary-dark/20">
-              <i className={`${getIcon(visaName)} text-3xl`}></i>
             </div>
             <div>
               <h1 className="font-poppins font-extrabold text-4xl sm:text-5xl text-[#1f4e79] mb-2 tracking-tight">
-                {visaName}
+                {VisatypeInfo.title}
               </h1>
               <p className="text-lg text-dark/70 font-medium">
-                Our latest guides, requirements, and tips for {visaName}.
+                Our latest guides, requirements, and tips for {VisatypeInfo.title}:
+              </p>
+              <br />
+              <p className="text-sm text-dark/70 font-medium">
+                {VisatypeInfo.description}.
               </p>
             </div>
           </div>
@@ -72,7 +90,7 @@ const VisaTypePage = ({ visaName, onBack }) => {
             <i className="ri-search-line text-[#59b9f6] text-xl mr-3"></i>
             <input
               type="text"
-              placeholder={`Search Articles about ${visaName}`}
+              placeholder={`Search Articles about ${visatitle}`}
               className="flex-1 w-full bg-transparent outline-none text-dark placeholder-muted/70 font-medium"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -80,7 +98,6 @@ const VisaTypePage = ({ visaName, onBack }) => {
           </div>
         </motion.div>
 
-        {/* Articles Grid */}
         <motion.div
           initial="hidden"
           animate="show"
@@ -93,8 +110,8 @@ const VisaTypePage = ({ visaName, onBack }) => {
           }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
-          {filteredVisas.length > 0 ? (
-            filteredVisas.map((article) => (
+          {filteredVisasArticles.length > 0 ? (
+            filteredVisasArticles.map((article) => (
               <motion.div
                 variants={{
                   hidden: { opacity: 0, y: 20 },
@@ -106,12 +123,12 @@ const VisaTypePage = ({ visaName, onBack }) => {
                 <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-primary-light to-primary-dark opacity-0 group-hover:opacity-100 transition-opacity"></div>
 
                 <div className="flex flex-wrap gap-2 mb-5">
-                  {article.tags.map((tag, tagIdx) => (
+                  {article.tags.map((tag) => (
                     <span
-                      key={tagIdx}
+                      key={tag.id}
                       className="px-3 py-1 bg-[#f0f7ff] text-[#1f4e79] rounded-lg text-xs font-bold font-poppins uppercase tracking-wide border border-[#e1effe]"
                     >
-                      {tag}
+                      {tag.tags}
                     </span>
                   ))}
                 </div>
@@ -145,7 +162,7 @@ const VisaTypePage = ({ visaName, onBack }) => {
               </div>
               <h3 className="text-xl font-poppins font-bold text-dark mb-2">No articles found</h3>
               <p className="text-muted font-medium">
-                No articles found for {visaName} {searchQuery && `matching "${searchQuery}"`}.
+                No articles found for {visatitle} {searchQuery && `matching "${searchQuery}"`}.
               </p>
             </div>
           )}
