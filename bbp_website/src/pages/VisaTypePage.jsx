@@ -146,7 +146,7 @@ const VisaTypePage = () => {
                     <i className="ri-calendar-line"></i> {article.date}
                   </span>
                   <Link
-                    to={`/articles/${article.id}`}
+                    to={`/article-content/${article.title}`}
                     className="inline-flex items-center text-[#59b9f6] hover:text-primary-dark font-poppins font-bold text-sm transition-colors"
                   >
                     Read
