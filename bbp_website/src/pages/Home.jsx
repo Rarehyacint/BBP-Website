@@ -112,9 +112,9 @@ useEffect(() => {
         setErrorMessage("");
 
         const [visaTypesRes, visaCategoryRes, visaArticlesRes, flagsRes] = await Promise.all([
-          fetch("http://localhost:1337/api/visa-types"),
-          fetch("http://localhost:1337/api/visa-categories"),
-          fetch("http://localhost:1337/api/articles?populate=tags&populate=takeaway"),
+          fetch("https://strapi-headless-1.onrender.com/api/visa-types"),
+          fetch("https://strapi-headless-1.onrender.com/api/visa-categories"),
+          fetch("https://strapi-headless-1.onrender.com/api/articles?populate=tags&populate=takeaway"),
           fetch("https://flagcdn.com/en/codes.json", { cache: "force-cache" })
         ]);
 
