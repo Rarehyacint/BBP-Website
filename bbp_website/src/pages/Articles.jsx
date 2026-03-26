@@ -92,7 +92,7 @@ const Articles = ({ onBack }) => {
                 <motion.div
                   variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}
                   key={article.id}
-                  className="group relative bg-white/60 backdrop-blur-xl rounded-3xl p-5 sm:p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-white hover:shadow-[0_20px_40px_rgba(89,185,246,0.12)] hover:-translate-y-1 transition-all duration-300 flex flex-col md:flex-row gap-6 overflow-hidden"
+                  className="group relative bg-white/60 backdrop-blur-xl rounded-2xl p-4 sm:p-5 shadow-[0_4px_20px_rgb(0,0,0,0.04)] border border-white hover:shadow-[0_10px_30px_rgba(89,185,246,0.12)] hover:-translate-y-1 transition-all duration-300 flex flex-col md:flex-row gap-5 overflow-hidden"
                 >
                   <div className="absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-primary-light to-primary-dark opacity-0 group-hover:opacity-100 transition-opacity"></div>
                   
@@ -101,10 +101,10 @@ const Articles = ({ onBack }) => {
                   </div>
 
                   <div className="flex flex-col flex-1 py-1">
-                    <h2 className="font-poppins font-extrabold text-2xl text-dark leading-snug mb-3 group-hover:text-[#1f4e79] transition-colors">
+                    <h2 className="font-poppins font-extrabold text-xl text-dark leading-snug mb-2 group-hover:text-[#1f4e79] transition-colors">
                       {article.title}
                     </h2>
-                    <p className="font-manrope text-dark/70 text-sm leading-relaxed mb-4 flex-grow">
+                    <p className="font-manrope text-dark/70 text-[13px] leading-relaxed mb-4 flex-grow">
                       {article.summary}
                     </p>
 

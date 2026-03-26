@@ -1,66 +1,98 @@
 [
   {
-    "id": 1,
+    "id": "japan-tourist-visa",
     "title": "Complete Guide to Getting a Japan Tourist Visa",
     "summary": "Everything you need to know about applying for a Japan tourist visa as a Filipino passport holder.",
     "date": "Mar 1, 2026",
-    "tags": ["Asia", "Japan", "Visa Guide"],
-    "link": "#"
+    "tags": [
+      "Asia",
+      "Japan",
+      "Visa Guide"
+    ],
+    "link": "/articles/japan-tourist-visa"
   },
   {
     "id": 2,
     "title": "South Korea Tourist Visa Requirements",
     "summary": "Updated list of requirements and procedures for Filipinos applying for a South Korean tourist visa. Learn about the new simplified rules.",
     "date": "Feb 28, 2026",
-    "tags": ["Asia", "South Korea", "Visa Guide"],
-    "link": "#"
+    "tags": [
+      "Asia",
+      "South Korea",
+      "Visa Guide"
+    ],
+    "link": "/articles/first-time-travel-checklist"
   },
   {
     "id": 3,
     "title": "Applying for a Schengen Visa through France",
     "summary": "Planning a Eurotrip? Here is how to apply for a Schengen Visa via the French Embassy in Manila.",
     "date": "Feb 20, 2026",
-    "tags": ["Europe", "Schengen Area", "France"],
-    "link": "#"
+    "tags": [
+      "Europe",
+      "Schengen Area",
+      "France"
+    ],
+    "link": "/articles/first-time-travel-checklist"
   },
   {
     "id": 4,
     "title": "Taiwan Visa-Free Entry Extension",
     "summary": "Great news for Filipino tourists! Taiwan has extended its visa-free entry policy. Read the details and conditions here.",
     "date": "Jan 15, 2026",
-    "tags": ["Asia", "Taiwan", "Visa Free"],
-    "link": "#"
+    "tags": [
+      "Asia",
+      "Taiwan",
+      "Visa Free"
+    ],
+    "link": "/articles/first-time-travel-checklist"
   },
   {
     "id": 5,
     "title": "Singapore Visa Requirements for Filipinos",
     "summary": "Step-by-step guide to applying for a Singapore tourist visa including online application process and required documents.",
     "date": "Jan 10, 2026",
-    "tags": ["Asia", "Singapore", "Visa Guide"],
-    "link": "#"
+    "tags": [
+      "Asia",
+      "Singapore",
+      "Visa Guide"
+    ],
+    "link": "/articles/first-time-travel-checklist"
   },
   {
     "id": 6,
     "title": "US B1/B2 Tourist Visa Application Guide",
     "summary": "Everything you need for your US Visa application. From filling out the DS-160 to scheduling your interview at the US Embassy in Manila.",
     "date": "Dec 20, 2025",
-    "tags": ["Americas", "USA", "Visa Guide"],
-    "link": "#"
+    "tags": [
+      "Americas",
+      "USA",
+      "Visa Guide"
+    ],
+    "link": "/articles/first-time-travel-checklist"
   },
   {
     "id": 7,
     "title": "Canada Tourist Visa Document Checklist",
     "summary": "Applying for a Canada Visitor Visa? Use this comprehensive document checklist to ensure you have everything before submitting.",
     "date": "Dec 15, 2025",
-    "tags": ["Americas", "Canada", "Visa Guide"],
-    "link": "#"
+    "tags": [
+      "Americas",
+      "Canada",
+      "Visa Guide"
+    ],
+    "link": "/articles/first-time-travel-checklist"
   },
   {
     "id": 8,
     "title": "Schengen Visa via Spanish Embassy in Manila",
     "summary": "Applying for a Schengen Visa for Spain? Follow this step-by-step guide for BLS International Manila.",
     "date": "Nov 25, 2025",
-    "tags": ["Europe", "Schengen Area", "Spain"],
-    "link": "#"
+    "tags": [
+      "Europe",
+      "Schengen Area",
+      "Spain"
+    ],
+    "link": "/articles/first-time-travel-checklist"
   }
 ]

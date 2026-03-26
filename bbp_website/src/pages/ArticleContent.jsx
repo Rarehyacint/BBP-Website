@@ -1,8 +1,51 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import SiteHeader from "../components/SiteHeader";
 import articlesData from "../data/articles.json";
+
+const FAQItem = ({ item }) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  return (
+    <motion.div
+      layout
+      className="bg-[#fcfbf6] border border-[#d7d5d0] backdrop-blur-xl rounded-2xl p-5 sm:p-6 shadow-[0_4px_20px_rgb(0,0,0,0.04)] border border-white hover:shadow-[0_10px_30px_rgba(89,185,246,0.12)] transition-all duration-300 w-full mb-4 cursor-pointer group"
+      onClick={() => setIsExpanded(!isExpanded)}
+    >
+      <div className="flex items-start justify-between gap-4">
+        <h3 className="font-poppins font-extrabold text-lg text-dark leading-snug group-hover:text-[#1f4e79] transition-colors pr-8">
+          {item.q}
+        </h3>
+        <motion.div
+          animate={{ rotate: isExpanded ? 180 : 0 }}
+          transition={{ duration: 0.3 }}
+          className="shrink-0 w-8 h-8 rounded-full bg-[#f0f7ff] text-[#59b9f6] flex items-center justify-center mt-[-4px]"
+        >
+          <i className="ri-arrow-down-s-line text-lg"></i>
+        </motion.div>
+      </div>
+
+      <AnimatePresence initial={false}>
+        {isExpanded && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+            className="overflow-hidden"
+          >
+            <div className="pt-4 mt-3 border-t border-gray-100/50">
+              <p className="font-manrope text-dark/70 text-[13px] leading-relaxed">
+                {item.a}
+              </p>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
+  );
+};
 
 export default function ArticleContent() {
   const { id } = useParams();
@@ -32,6 +75,29 @@ export default function ArticleContent() {
   // Related articles (mock 3 items from JSON that are NOT the current one)
   const relatedArticles = articlesData.filter((a) => a.id !== id).slice(0, 3);
 
+  const country = article.country || (article.tags && article.tags[0]) || "Philippines";
+  
+  const continentMap = {
+    "Singapore": "Asia",
+    "Japan": "Asia",
+    "South Korea": "Asia",
+    "USA": "North America",
+    "United States": "North America",
+    "UK": "Europe",
+    "United Kingdom": "Europe",
+    "Canada": "North America",
+    "Australia": "Oceania",
+    "New Zealand": "Oceania",
+    "France": "Europe",
+    "Germany": "Europe",
+    "Italy": "Europe",
+    "Spain": "Europe",
+    "Schengen": "Europe",
+    "UAE": "Asia"
+  };
+  
+  const continent = article.continent || continentMap[country] || "Global";
+
   const scrollToSection = (e, targetId) => {
     e.preventDefault();
     const element = document.getElementById(targetId);
@@ -43,14 +109,14 @@ export default function ArticleContent() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-dark font-manrope pb-20">
+    <div className="min-h-screen bg-[#eef6fc] text-dark font-manrope pb-20">
       <SiteHeader />
 
       {/* Hero Section */}
       <div className="relative bg-[#5a8b6c] text-white pt-16 pb-20 overflow-hidden">
         {/* Placeholder for passport background map */}
         <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] mix-blend-overlay"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-[#3e664b] to-[#5a8b6c] opacity-80"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-[#1f4e79] to-[#59b9f6] opacity-80"></div>
 
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -60,9 +126,11 @@ export default function ArticleContent() {
         >
           <div className="flex items-center gap-2 text-sm font-semibold mb-6 flex-wrap opacity-90">
             <i className="ri-global-line"></i>
-            <Link to="/" className="hover:underline">Home</Link>
-            <i className="ri-arrow-right-s-line text-xs"></i>
-            <Link to="/articles" className="hover:underline">{article.category || "Articles"}</Link>
+            <span>{continent}</span>
+            <i className="ri-arrow-right-s-line text-xs drop-shadow-sm font-bold opacity-70"></i>
+            <span className="font-bold">
+              {country}
+            </span>
           </div>
 
           <h1 className="font-poppins font-extrabold text-4xl md:text-5xl lg:text-5xl mb-4 leading-[1.15] max-w-4xl tracking-tight">
@@ -74,7 +142,7 @@ export default function ArticleContent() {
 
           <div className="flex flex-wrap gap-3">
             {article.tags.map((tag, idx) => (
-              <span key={idx} className="bg-white/90 text-dark px-4 py-1.5 rounded-full font-bold text-xs tracking-wide shadow-sm">
+              <span key={idx} className="bg-[#fcfbf6] text-[#1e1e1e] px-4 py-1.5 rounded-full font-bold text-xs tracking-wide shadow-sm">
                 {tag}
               </span>
             ))}
@@ -87,10 +155,10 @@ export default function ArticleContent() {
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.1 }}
-        className="border-b border-gray-200 bg-[#f4f7f5] sticky top-[72px] z-40 hidden md:block"
+        className="border-b border-gray-200 bg-[#ffffff] sticky top-[72px] z-40 hidden md:block"
       >
         <div className="max-w-7xl mx-auto px-6">
-          <div className="flex items-center gap-8 py-4 font-bold text-[#3e664b] text-sm">
+          <div className="flex items-center gap-8 py-4 font-bold text-[#1e4a31] text-sm">
             <a href="#overview" onClick={(e) => scrollToSection(e, 'overview')} className="hover:text-primary-dark transition-colors cursor-pointer">About This Visa</a>
             <a href="#eligibility" onClick={(e) => scrollToSection(e, 'eligibility')} className="hover:text-primary-dark transition-colors cursor-pointer">Eligibility</a>
             <a href="#requirements" onClick={(e) => scrollToSection(e, 'requirements')} className="hover:text-primary-dark transition-colors cursor-pointer">Requirements</a>
@@ -114,7 +182,7 @@ export default function ArticleContent() {
           >
 
             {/* 1. Overview Box */}
-            <div id="overview" className="bg-[#fcfbf6] border border-[#d7d5d0] rounded-[4px] p-6 sm:p-8 shadow-sm">
+            <div id="overview" className="bg-[#fcfbf6] border border-[#d7d5d0] rounded-[15px] p-6 sm:p-8 shadow-sm">
               <h2 className="font-poppins font-extrabold text-2xl text-dark mb-5">Overview</h2>
               <div className="prose prose-lg max-w-none text-dark/80 font-medium leading-[1.7] text-[15px]">
                 {article.content ? article.content.split("\n\n").map((para, i) => (
@@ -126,26 +194,26 @@ export default function ArticleContent() {
             </div>
 
             {/* 2. Eligibility Box */}
-            <div id="eligibility" className="bg-[#fcfbf6] border border-[#d7d5d0] rounded-[4px] p-6 sm:p-8 shadow-sm">
+            <div id="eligibility" className="bg-[#fcfbf6] border border-[#d7d5d0] rounded-[15px] p-6 sm:p-8 shadow-sm">
               <h2 className="font-poppins font-extrabold text-2xl text-dark mb-5">Eligibility</h2>
               <ul className="list-none space-y-4">
                 <li className="flex items-start gap-4 text-dark/80 font-medium text-[15px]">
-                  <i className="ri-checkbox-circle-fill text-[#1e4a31] text-xl mt-[-2px]"></i>
+                  <i className="ri-checkbox-circle-fill text-[#f5a623] text-xl mt-[-2px]"></i>
                   <span>Must be a citizen of an eligible country with a valid passport (at least 6 months validity).</span>
                 </li>
                 <li className="flex items-start gap-4 text-dark/80 font-medium text-[15px]">
-                  <i className="ri-checkbox-circle-fill text-[#1e4a31] text-xl mt-[-2px]"></i>
+                  <i className="ri-checkbox-circle-fill text-[#f5a623] text-xl mt-[-2px]"></i>
                   <span>Must be able to provide proof of sufficient financial means to support the stay.</span>
                 </li>
                 <li className="flex items-start gap-4 text-dark/80 font-medium text-[15px]">
-                  <i className="ri-checkbox-circle-fill text-[#1e4a31] text-xl mt-[-2px]"></i>
+                  <i className="ri-checkbox-circle-fill text-[#f5a623] text-xl mt-[-2px]"></i>
                   <span>{article.additionalResources || "Must have a clear purpose of travel, such as a confirmed itinerary, hotel bookings, or official invitation."}</span>
                 </li>
               </ul>
             </div>
 
             {/* 3. Requirements Box */}
-            <div id="requirements" className="bg-[#fcfbf6] border border-[#d7d5d0] rounded-[4px] p-6 sm:p-8 shadow-sm">
+            <div id="requirements" className="bg-[#fcfbf6] border border-[#d7d5d0] rounded-[15px] p-6 sm:p-8 shadow-sm">
               <h2 className="font-poppins font-extrabold text-2xl text-dark mb-5">Requirements</h2>
 
               <h3 className="font-bold text-dark mb-3 text-lg">Identification Documents</h3>
@@ -165,14 +233,14 @@ export default function ArticleContent() {
             </div>
 
             {/* 4. Step-by-Step Guide Box */}
-            <div id="step-by-step" className="bg-[#fcfbf6] border border-[#d7d5d0] rounded-[4px] p-6 sm:p-8 shadow-sm">
+            <div id="step-by-step" className="bg-[#fcfbf6] border border-[#d7d5d0] rounded-[15px] p-6 sm:p-8 shadow-sm">
               <h2 className="font-poppins font-extrabold text-2xl text-dark mb-5">Step-by-Step Guide</h2>
               <div className="relative pl-3">
                 <div className="absolute left-[23px] top-6 bottom-4 w-px bg-[#1e4a31] z-0"></div>
                 <ul className="space-y-6 relative z-10 m-0 p-0 list-none">
                   {article.keyTakeaways ? article.keyTakeaways.map((item, idx) => (
                     <li key={idx} className="flex items-start gap-4 text-dark/80 font-medium text-[15px]">
-                      <span className="w-6 h-6 rounded-full bg-[#1e4a31] text-white flex items-center justify-center text-xs font-bold shrink-0 mt-0 shadow-sm border border-[#1e4a31]">
+                      <span className="w-6 h-6 rounded-full bg-[#f5a623] text-white flex items-center justify-center text-xs font-bold shrink-0 mt-0 shadow-sm border border-[#f5a623]">
                         {idx + 1}
                       </span>
                       <span className="bg-[#fcfbf6] pr-2 pt-0.5">{item}</span>
@@ -180,11 +248,11 @@ export default function ArticleContent() {
                   )) : (
                     <>
                       <li className="flex items-start gap-4 text-dark/80 font-medium text-[15px]">
-                        <span className="w-6 h-6 rounded-full bg-[#1e4a31] text-white flex items-center justify-center text-xs font-bold shrink-0 mt-0 shadow-sm border border-[#1e4a31]">1</span>
+                        <span className="w-6 h-6 rounded-full bg-[#f5a623] text-white flex items-center justify-center text-xs font-bold shrink-0 mt-0 shadow-sm border border-[#f5a623]">1</span>
                         <span className="bg-[#fcfbf6] pr-2 pt-0.5">Determine your visa type and eligibility</span>
                       </li>
                       <li className="flex items-start gap-4 text-dark/80 font-medium text-[15px]">
-                        <span className="w-6 h-6 rounded-full bg-[#1e4a31] text-white flex items-center justify-center text-xs font-bold shrink-0 mt-0 shadow-sm border border-[#1e4a31]">2</span>
+                        <span className="w-6 h-6 rounded-full bg-[#f5a623] text-white flex items-center justify-center text-xs font-bold shrink-0 mt-0 shadow-sm border border-[#f5a623]">2</span>
                         <span className="bg-[#fcfbf6] pr-2 pt-0.5">Gather all necessary supporting documents</span>
                       </li>
                       <li className="flex items-start gap-4 text-dark/80 font-medium text-[15px]">
@@ -202,7 +270,7 @@ export default function ArticleContent() {
             </div>
 
             {/* 5. Tips & Mistakes Box */}
-            <div id="tips-mistakes" className="bg-[#fcfbf6] border border-[#d7d5d0] rounded-[4px] p-6 sm:p-8 shadow-sm">
+            <div id="tips-mistakes" className="bg-[#fcfbf6] border border-[#d7d5d0] rounded-[15px] p-6 sm:p-8 shadow-sm">
               <h2 className="font-poppins font-extrabold text-2xl text-dark mb-5">Tips & Mistakes</h2>
 
               <h3 className="font-bold text-dark mb-4 text-lg">What to do?</h3>
@@ -231,45 +299,23 @@ export default function ArticleContent() {
             </div>
 
             {/* Frequently Asked Questions */}
-            <div id="faq" className="mt-8 pt-6">
-              <h2 className="font-poppins font-extrabold text-2xl text-dark mb-6">Frequently Asked Questions - FAQ's</h2>
-              <div className="bg-[#fcfbf6] border border-[#d7d5d0] rounded-[4px] overflow-hidden shadow-sm divide-y divide-[#d7d5d0]">
-                <details className="group">
-                  <summary className="flex items-center justify-between p-5 font-bold cursor-pointer text-[13px] text-dark bg-white/50 hover:bg-white transition-colors">
-                    When should I apply? (Up to 6 months before trip; latest 15 days before)
-                    <i className="ri-arrow-down-s-line transition-transform group-open:rotate-180 text-[#1e4a31]"></i>
-                  </summary>
-                  <div className="p-5 pt-0 text-[13px] text-dark/70 font-medium bg-white/50">
-                    Apply as early as 6 months before your trip. The latest is 15 days before departure, but applying 3-4 weeks ahead is safest.
-                  </div>
-                </details>
-                <details className="group">
-                  <summary className="flex items-center justify-between p-5 font-bold cursor-pointer text-[13px] text-dark bg-white/50 hover:bg-white transition-colors">
-                    Do I need originals? (Yes, some returned, some kept)
-                    <i className="ri-arrow-down-s-line transition-transform group-open:rotate-180 text-[#1e4a31]"></i>
-                  </summary>
-                  <div className="p-5 pt-0 text-[13px] text-dark/70 font-medium bg-white/50">
-                    Always bring original documents to your appointment along with photocopies.
-                  </div>
-                </details>
-                <details className="group">
-                  <summary className="flex items-center justify-between p-5 font-bold cursor-pointer text-[13px] text-dark bg-white/50 hover:bg-white transition-colors">
-                    Can someone else collect my passport? (Yes, with authorization letter + ID)
-                    <i className="ri-arrow-down-s-line transition-transform group-open:rotate-180 text-[#1e4a31]"></i>
-                  </summary>
-                  <div className="p-5 pt-0 text-[13px] text-dark/70 font-medium bg-white/50">
-                    Yes, an authorized representative can collect it.
-                  </div>
-                </details>
+            {article.faqs && article.faqs.length > 0 && (
+              <div id="faq" className="mt-8 pt-6">
+                <h2 className="font-poppins font-extrabold text-2xl text-dark mb-6">Frequently Asked Questions - FAQ's</h2>
+                <div className="w-full">
+                  {article.faqs.map((faq, idx) => (
+                    <FAQItem key={idx} item={faq} />
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
 
             {/* Comments Section */}
             <div className="mt-12 pt-6">
               <h2 className="font-poppins font-extrabold text-2xl text-dark mb-6">Comments</h2>
 
               <div className="space-y-5">
-                <div className="bg-white border border-[#d7d5d0] rounded-[4px] p-5 shadow-sm relative">
+                <div className="bg-[#fcfbf6] border border-[#d7d5d0] rounded-[15px] p-5 shadow-sm relative">
                   <div className="flex justify-between items-start mb-3">
                     <div>
                       <h4 className="font-bold text-dark text-sm">Maria Santos</h4>
@@ -284,7 +330,7 @@ export default function ArticleContent() {
                   </p>
                 </div>
 
-                <div className="ml-10 bg-white border border-[#d7d5d0] rounded-[4px] p-5 shadow-sm relative">
+                <div className="ml-10 bg-[#fcfbf6] border border-[#d7d5d0] rounded-[15px] p-5 shadow-sm relative">
                   <div className="absolute -left-5 top-5 text-[#d7d5d0]">
                     <i className="ri-corner-down-right-line"></i>
                   </div>
@@ -306,7 +352,7 @@ export default function ArticleContent() {
                 </div>
 
                 {/* Add a Comment */}
-                <div className="bg-white border border-[#d7d5d0] rounded-[4px] p-5 shadow-sm mt-6">
+                <div className="bg-[#fcfbf6] border border-[#d7d5d0] rounded-[15px] p-5 shadow-sm mt-6">
                   <h4 className="font-bold text-dark text-[15px] mb-3">Add a Comment</h4>
                   <textarea
                     className="w-full h-20 outline-none resize-none text-[13px] placeholder-gray-400 font-medium"
@@ -322,12 +368,15 @@ export default function ArticleContent() {
             </div>
 
             {/* Bottom Banner */}
-            <div className="mt-12 bg-gradient-to-r from-[#c0a266] to-[#a38343] rounded-[4px] p-8 md:p-10 text-center text-dark shadow-sm">
-              <h2 className="font-poppins font-extrabold text-3xl mb-3 text-[#1a1a1a]">Need Professional Help?</h2>
-              <p className="font-medium text-[#2d2d2d] mb-6 text-sm max-w-lg mx-auto">
+            <div className="mt-12 bg-gradient-to-b from-[#1f4e79] to-[#59b9f6] rounded-[15px] p-8 md:p-10 text-center text-dark shadow-sm">
+              <h2 className="font-poppins font-extrabold text-3xl mb-3 text-[#ffffff]">Need Professional Help?</h2>
+              <p className="font-medium text-[#ffffff] mb-6 text-sm max-w-lg mx-auto">
                 Can't find the answer you're looking for? Contact our team of experts.
               </p>
-              <button className="bg-[#dfd7b8] text-dark shadow-[0_4px_10px_rgba(0,0,0,0.15)] px-8 py-3 rounded-[2rem] font-bold text-sm hover:bg-white transition-colors">
+              <button
+                onClick={() => navigate('/services')}
+                className="bg-gradient-to-b from-[#ffffff] to-[#fffce0] text-dark shadow-[0_4px_10px_rgba(0,0,0,0.15)] px-8 py-3 rounded-[2rem] font-bold text-sm hover:bg-white transition-colors"
+              >
                 Book a Consultation
               </button>
             </div>
@@ -344,44 +393,40 @@ export default function ArticleContent() {
             <div className="sticky top-[140px] space-y-6">
 
               {/* Quick Facts */}
-              <div className="bg-[#fcfbf6] border border-[#d7d5d0] rounded-[4px] p-6 shadow-sm">
-                <h3 className="font-bold text-[#136c31] text-[13px] mb-5">Quick Facts:</h3>
+              {article.quickFacts && (
+                <div className="bg-[#fcfbf6] border border-[#d7d5d0] rounded-[15px] p-6 shadow-sm">
+                  <h3 className="font-poppins text-[#1e4a31] font-extrabold text-2xl text-dark mb-5">Quick Facts:</h3>
 
-                <div className="space-y-4">
-                  <div>
-                    <p className="text-[11px] text-dark/60 font-medium mb-0.5">Processing Time</p>
-                    <p className="text-[13px] font-bold text-dark">10–15 working days</p>
-                  </div>
-                  <div>
-                    <p className="text-[11px] text-dark/60 font-medium mb-0.5">Validity Period</p>
-                    <p className="text-[13px] font-bold text-dark">Up to 90 days within 180-day period</p>
-                  </div>
-                  <div>
-                    <p className="text-[11px] text-dark/60 font-medium mb-0.5">Cost</p>
-                    <p className="text-[13px] font-bold text-dark">P5,440</p>
-                  </div>
-                  <div>
-                    <p className="text-[11px] text-dark/60 font-medium mb-0.5">Visa Type</p>
-                    <p className="text-[13px] font-bold text-dark">Short-Stay Tourist Visa</p>
-                  </div>
-                  <div>
-                    <p className="text-[11px] text-dark/60 font-medium mb-0.5">Where To Apply</p>
-                    <p className="text-[12px] font-bold text-dark leading-tight mb-2">TLScontact Manila: <span className="font-medium">Proscenium Tower, Makati</span></p>
-                    <p className="text-[12px] font-bold text-dark leading-tight">TLScontact Cebu: <span className="font-medium">Latitude Corporate Center, Cebu Business Park</span></p>
+                  <div className="space-y-4">
+                    {Object.entries(article.quickFacts).map(([key, value], idx) => (
+                      <div key={idx}>
+                        <p className="text-[12px] text-dark/60 font-medium mb-0.5">{key}</p>
+                        {Array.isArray(value) ? (
+                          value.map((v, i) => (
+                            <p key={i} className="text-[12px] font-bold text-dark leading-tight mb-1">{v}</p>
+                          ))
+                        ) : (
+                          <p className="text-[13px] font-bold text-dark">{value}</p>
+                        )}
+                      </div>
+                    ))}
                   </div>
                 </div>
-              </div>
+              )}
 
               {/* Need Professional Help Sidebar */}
-              <div className="bg-gradient-to-b from-[#e5d8b2] to-[#b18f3d] rounded-[4px] p-6 shadow-sm border border-[#ceb882]">
-                <h3 className="font-poppins font-extrabold text-[#1a1a1a] text-lg mb-2">Need Professional Help?</h3>
-                <p className="text-[12px] font-medium text-[#2d2d2d] leading-relaxed mb-5">
+              <div className="bg-gradient-to-b from-[#1f4e79] to-[#59b9f6] rounded-[15px] p-6 shadow-sm border border-[#ceb882]">
+                <h3 className="font-poppins font-extrabold text-[#ffffff] text-lg mb-2">Need Professional Help?</h3>
+                <p className="text-[12px] font-medium text-[#ffffff] leading-relaxed mb-5">
                   Our visa experts can guide you through the entire application process and ensure your success.
                 </p>
-                <button className="w-full bg-[#fdfcf5] text-dark shadow-[0_2px_8px_rgba(0,0,0,0.1)] py-2 rounded-[2rem] font-bold text-xs hover:bg-white transition-colors mb-5 flex items-center justify-center gap-2">
-                  <i className="ri-user-line font-normal"></i> Consult an Expert
+                <button
+                  onClick={() => navigate('/services')}
+                  className="w-full bg-gradient-to-b from-[#ffffff] to-[#fffce0] text-dark shadow-[0_2px_8px_rgba(0,0,0,0.1)] py-2 rounded-[2rem] font-bold text-xs hover:bg-white transition-colors mb-5 flex items-center justify-center gap-2"
+                >
+                  <i className="ri-user-line font-normal"></i> Contact Us
                 </button>
-                <div className="space-y-2 text-[11px] font-medium text-[#2d2d2d]">
+                <div className="space-y-2 text-[11px] font-medium text-[#ffffff]">
                   <div className="flex items-start gap-1.5">
                     <i className="ri-phone-line mt-0.5"></i>
                     <span>+63 282313256 (Mon-Fri, 8:00 AM-12:00 PM, 1:30 PM-4:30 PM)</span>
@@ -399,8 +444,8 @@ export default function ArticleContent() {
                 <div className="space-y-4">
                   {relatedArticles.map((rel) => (
                     <Link to={`/articles/${rel.id}`} key={rel.id} className="block group">
-                      <div className="bg-white border border-[#d7d5d0] rounded-[4px] overflow-hidden shadow-sm hover:border-[#136c31]/50 transition-colors">
-                        <div className="h-[90px] bg-gradient-to-b from-[#b79659] to-[#f4ecd8] opacity-90 group-hover:opacity-100 transition-opacity"></div>
+                      <div className="bg-white border border-[#d7d5d0] rounded-[15px] overflow-hidden shadow-sm hover:border-[#136c31]/50 transition-colors">
+                        <div className="h-[90px] bg-gradient-to-b from-[#1f4e79] to-[#59b9f6] opacity-90 group-hover:opacity-100 transition-opacity"></div>
                         <div className="p-4">
                           <h4 className="font-bold text-[13px] text-dark mb-2 group-hover:text-[#136c31] transition-colors line-clamp-2">
                             {rel.title}

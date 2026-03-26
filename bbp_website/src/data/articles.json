@@ -4,7 +4,10 @@
     "title": "Singapore Visa Requirements for Filipino Tourists: Complete Guide",
     "summary": "Step-by-step guide to applying for a Singapore tourist visa including online application process, required documents, and processing time for Filipino passport holders.",
     "date": "Feb 23, 2026",
-    "tags": ["Singapore", "Tourist Visa"],
+    "tags": [
+      "Singapore",
+      "Tourist Visa"
+    ],
     "author": "Maria Santos",
     "readTime": "8 min read",
     "content": "Singapore remains one of the top destinations for Filipinos. While it is visa-free for visits under 30 days, there are still crucial requirements you need to prepare to ensure a smooth entry.\n\nFrom the SG Arrival Card to proof of accommodation, this guide covers everything you need to know about preparing your travel documents.\n\nWe recommend starting your preparation at least two weeks before your flight to avoid last-minute stress.",
@@ -17,14 +20,41 @@
     ],
     "additionalResources": "Visit the official ICA website for the latest updates on entry requirements and e-gate eligibility for PH citizens.",
     "proTip": "Use the automated lanes if you have a biometric passport; it saves a lot of time at Changi Airport!",
-    "category": "Visa Guides"
+    "category": "Visa Guides",
+    "quickFacts": {
+      "Processing Time": "2-3 working days",
+      "Validity Period": "Up to 30 days",
+      "Cost": "Free for PH citizens (<30 days)",
+      "Visa Type": "Visa-Free Entry (Tourist)",
+      "Where To Apply": [
+        "SG Arrival Card via ICA online portal"
+      ]
+    },
+    "faqs": [
+      {
+        "q": "Is a visa required for Singapore?",
+        "a": "No, Filipino tourists can enter visa-free for up to 30 days."
+      },
+      {
+        "q": "What should I prepare?",
+        "a": "A valid passport, return ticket, hotel booking, and the SG Arrival Card."
+      },
+      {
+        "q": "Do I need pocket money?",
+        "a": "It's recommended to carry enough SGD to prove financial capacity during your stay."
+      }
+    ]
   },
   {
     "id": "first-time-travel-checklist",
     "title": "Your First International Flight: A Complete Checklist",
     "summary": "Everything you need to know before boarding your first international flight.",
     "date": "February 16, 2026",
-    "tags": ["Tips", "First Time", "Unang Lipad"],
+    "tags": [
+      "Tips",
+      "First Time",
+      "Unang Lipad"
+    ],
     "author": "Maria Santos",
     "readTime": "8 min read",
     "content": "Stepping into the airport for your first international flight can be overwhelming. This checklist is designed to keep you organized and confident.\n\nFrom check-in procedures to the immigration interview, we break down each step so you know exactly what to expect.\n\nTraveling is an adventure, but being prepared makes the journey much more enjoyable.",
@@ -37,14 +67,38 @@
     ],
     "additionalResources": "For more information and updates, make sure to check official government websites and consult with travel professionals. Every traveler's situation is unique, so tailor these guidelines to your specific needs.",
     "proTip": "Always arrive at the airport earlier than required. This gives you buffer time to handle any unexpected situations calmly.",
-    "category": "Unang Lipad"
+    "category": "Unang Lipad",
+    "quickFacts": {
+      "Preparation Time": "2-4 weeks prior",
+      "Key Documents": "Passport, Tickets, Hotel Booking, E-Travel",
+      "Airport Arrival": "3-4 hours before flight",
+      "Budget Setting": "Varies by destination",
+      "Insurance": "Highly Recommended"
+    },
+    "faqs": [
+      {
+        "q": "How early should I arrive at the airport?",
+        "a": "At least 3-4 hours before an international flight."
+      },
+      {
+        "q": "What is the E-Travel form?",
+        "a": "It is a mandatory electronic travel declaration for departing and arriving passengers in the Philippines."
+      },
+      {
+        "q": "Can I bring liquids in my carry-on?",
+        "a": "Yes, but they must be in containers of 100ml or less, packed in a single clear zip-top bag."
+      }
+    ]
   },
   {
     "id": "us-visa-interview-tips",
     "title": "US B1/B2 Tourist Visa Interview Tips",
     "summary": "Ace your US visa interview with these top tips for Filipino applicants, including what to wear, how to answer common questions, and documents to bring.",
     "date": "Feb 18, 2026",
-    "tags": ["USA", "Tourist Visa"],
+    "tags": [
+      "USA",
+      "Tourist Visa"
+    ],
     "author": "Ramon Dela Cruz",
     "readTime": "10 min read",
     "content": "The US visa interview is often the most nerve-wracking part of the application. However, the key to success is honesty and preparation.\n\nConsular officers are looking for strong ties to your home country. Be prepared to explain your itinerary and how you plan to fund your trip.\n\nRemember, the interview is usually very short, so clear and concise answers are vital.",
@@ -57,14 +111,41 @@
     ],
     "additionalResources": "Check the US Embassy in Manila's website for current wait times and any updated health protocols.",
     "proTip": "Don't bring liquids or large electronics into the embassy; the security line is strict!",
-    "category": "Visa Guides"
+    "category": "Visa Guides",
+    "quickFacts": {
+      "Processing Time": "Varies (check embassy wait times)",
+      "Validity Period": "Up to 10 years (Multiple Entry)",
+      "Cost": "$185 (MRV Fee)",
+      "Visa Type": "B1/B2 Nonimmigrant Visa",
+      "Where To Apply": [
+        "US Embassy Manila",
+        "1201 Roxas Blvd, Ermita, Manila"
+      ]
+    },
+    "faqs": [
+      {
+        "q": "Do I need to bring my bank statement?",
+        "a": "While not strictly required unless asked, it is highly recommended to bring proof of financial capacity."
+      },
+      {
+        "q": "What if I get denied?",
+        "a": "You can reapply anytime, but it's best to wait until your circumstances have significantly changed."
+      },
+      {
+        "q": "Are mobile phones allowed inside?",
+        "a": "No, electronic devices including mobile phones, smartwatches, and USB drives are strictly prohibited."
+      }
+    ]
   },
   {
     "id": "uk-student-visa-guide",
     "title": "How to get a UK Student Visa",
     "summary": "Comprehensive guide for Filipino students planning to study in the United Kingdom. Learn about the CAS, financial requirements, and application steps.",
     "date": "Feb 10, 2026",
-    "tags": ["UK", "Study Visa"],
+    "tags": [
+      "UK",
+      "Study Visa"
+    ],
     "author": "Elena Garcia",
     "readTime": "12 min read",
     "content": "Studying in the UK is a life-changing experience. To get there, you'll need a Student Visa (formerly Tier 4).\n\nYour journey starts with the Confirmation of Acceptance for Studies (CAS) from your chosen university. This document is the foundation of your application.\n\nYou'll also need to prove your English language proficiency and show that you have enough funds to support yourself during your stay.",
@@ -77,14 +158,41 @@
     ],
     "additionalResources": "The UK Council for International Student Affairs (UKCISA) provides excellent advice on student life and regulations.",
     "proTip": "Apply as early as possible—up to 6 months before your course starts!",
-    "category": "Visa Guides"
+    "category": "Visa Guides",
+    "quickFacts": {
+      "Processing Time": "3-4 weeks",
+      "Validity Period": "Duration of the course + up to 4 months",
+      "Cost": "£490 (Visa Fee) + Healthcare Surcharge",
+      "Visa Type": "Student Visa (formerly Tier 4)",
+      "Where To Apply": [
+        "VFS Global Manila",
+        "VFS Global Cebu"
+      ]
+    },
+    "faqs": [
+      {
+        "q": "Can I work while studying?",
+        "a": "Yes, usually up to 20 hours a week during term time and full-time during holidays."
+      },
+      {
+        "q": "What is a CAS?",
+        "a": "A Confirmation of Acceptance for Studies provided by your school, necessary for the application."
+      },
+      {
+        "q": "How much maintenance funds do I need?",
+        "a": "You need enough to pay for your course for 1 academic year and support yourself for up to 9 months."
+      }
+    ]
   },
   {
     "id": "spain-digital-nomad-guide",
     "title": "Spain Digital Nomad Visa: A Guide for Freelancers",
     "summary": "Find out if you qualify for the new Spain Digital Nomad Visa. We cover income requirements, tax implications, and the application procedure.",
     "date": "Jan 25, 2026",
-    "tags": ["Spain", "Digital Nomad Visa"],
+    "tags": [
+      "Spain",
+      "Digital Nomad Visa"
+    ],
     "author": "Carlos Mendoza",
     "readTime": "9 min read",
     "content": "Dreaming of working from a sun-drenched cafe in Barcelona? The Spain Digital Nomad Visa makes this possible for non-EU citizens.\n\nThis visa is designed for remote workers and freelancers who can prove they earn a certain income from clients outside of Spain.\n\nIt offers a path to residency and allows you to travel freely within the Schengen Area while enjoying the Spanish lifestyle.",
@@ -97,14 +205,41 @@
     ],
     "additionalResources": "The Spanish Ministry of Foreign Affairs has the detailed list of required certifications and translations.",
     "proTip": "Translate all your documents into Spanish using a sworn translator (traductor jurado) to avoid delays.",
-    "category": "Visa Guides"
+    "category": "Visa Guides",
+    "quickFacts": {
+      "Processing Time": "20-30 working days",
+      "Validity Period": "1 to 3 years (renewable)",
+      "Cost": "Approx. €80-€100 (Visa fees vary)",
+      "Visa Type": "Digital Nomad / Remote Worker Visa",
+      "Where To Apply": [
+        "BLS International Manila",
+        "Spanish Consulate"
+      ]
+    },
+    "faqs": [
+      {
+        "q": "Can I bring my family?",
+        "a": "Yes, the visa allows for family reunification including spouse and dependent children."
+      },
+      {
+        "q": "Do I have to pay taxes in Spain?",
+        "a": "Yes, but you may qualify for a special flat tax rate under the Beckham Law."
+      },
+      {
+        "q": "Is there a minimum income required?",
+        "a": "Yes, you generally must prove an income of at least 200% of the Spanish minimum wage."
+      }
+    ]
   },
   {
     "id": "philippine-srrv-guide",
     "title": "Retiring in the Philippines: SRRV Guide",
     "summary": "Complete information on the Special Resident Retiree's Visa for foreign nationals who wish to retire in the Philippines or for returning Filipinos.",
     "date": "Jan 12, 2026",
-    "tags": ["Philippines", "Retirement"],
+    "tags": [
+      "Philippines",
+      "Retirement"
+    ],
     "author": "Liza Tan",
     "readTime": "11 min read",
     "content": "The Philippines is a top retirement destination thanks to its low cost of living and hospitable culture. The SRRV is the primary visa for retirees.\n\nThe program offers multiple options depending on your age and health status. It provides permanent residency and various tax exemptions.\n\nWhether you're a former Filipino citizen looking to return or a foreign national seeking a tropical home, this guide explains the process clearly.",
@@ -117,14 +252,41 @@
     ],
     "additionalResources": "Contact the Philippine Retirement Authority (PRA) for a personalized list of requirements and accredited agents.",
     "proTip": "Use an accredited marketing agent; they can handle the bank deposits and paperwork for a smoother experience.",
-    "category": "Visa Guides"
+    "category": "Visa Guides",
+    "quickFacts": {
+      "Processing Time": "15-30 working days",
+      "Validity Period": "Indefinite (requires annual renewal of PRA ID)",
+      "Cost": "$1,400 application fee + Deposit",
+      "Visa Type": "Special Resident Retiree's Visa",
+      "Where To Apply": [
+        "Philippine Retirement Authority (PRA)",
+        "Accredited Marketers"
+      ]
+    },
+    "faqs": [
+      {
+        "q": "What is the minimum age to applying?",
+        "a": "Typically 50 years old, though there are special categories for younger applicants."
+      },
+      {
+        "q": "Can I work in the Philippines with an SRRV?",
+        "a": "Yes, provided you obtain an Alien Employment Permit (AEP) from DOLE."
+      },
+      {
+        "q": "Can I withdraw my deposit?",
+        "a": "Only if you cancel your SRRV or use it for an approved investment like purchasing a condo."
+      }
+    ]
   },
   {
     "id": "canada-family-sponsorship-guide",
     "title": "Canada Family Sponsorship Program 2026",
     "summary": "Everything you need to know about sponsoring your spouse, partner, or dependent children to join you in Canada.",
     "date": "Jan 5, 2026",
-    "tags": ["Canada", "Family Reunification"],
+    "tags": [
+      "Canada",
+      "Family Reunification"
+    ],
     "author": "Mark Wilson",
     "readTime": "15 min read",
     "content": "Reuniting with family is a priority for the Canadian government. The Family Sponsorship program allows permanent residents and citizens to bring their loved ones to Canada.\n\nSponsoring a spouse or child involves dual applications: one to be a sponsor and one for the sponsored person to become a permanent resident.\n\nIt's a long process, but seeing your family together in Canada is worth the effort.",
@@ -137,6 +299,76 @@
     ],
     "additionalResources": "The IRCC website has an interactive tool to check which forms you need based on who you are sponsoring.",
     "proTip": "Submit as many relationship proofs as possible. 'Too much' is rarely an issue when proving a genuine marriage!",
-    "category": "Visa Guides"
+    "category": "Visa Guides",
+    "quickFacts": {
+      "Processing Time": "10-12 months typically",
+      "Validity Period": "Permanent Residency",
+      "Cost": "Approx. $1,080 CAD base fee",
+      "Visa Type": "Family Class Sponsorship",
+      "Where To Apply": [
+        "IRCC Online Portal"
+      ]
+    },
+    "faqs": [
+      {
+        "q": "Is there an income requirement to sponsor a spouse?",
+        "a": "There is no strict minimum income requirement for spouses, but you must not be receiving social assistance for reasons other than a disability."
+      },
+      {
+        "q": "Can the sponsored spouse work?",
+        "a": "If applying from inside Canada, they can apply for an open work permit while the application is processing."
+      },
+      {
+        "q": "What if our relationship is new?",
+        "a": "You must provide substantial evidence that your relationship is genuine, continuing, and not entered into just for immigration purposes."
+      }
+    ]
+  },
+  {
+    "id": "japan-tourist-visa",
+    "title": "Complete Guide to Getting a Japan Tourist Visa",
+    "summary": "Everything you need to know about applying for a Japan tourist visa as a Filipino passport holder.",
+    "date": "Mar 1, 2026",
+    "tags": [
+      "Asia",
+      "Japan",
+      "Visa Guide"
+    ],
+    "author": "Ramon Dela Cruz",
+    "readTime": "7 min read",
+    "content": "Japan is a dream destination for many Filipinos, known for its vibrant culture, incredible food, and beautiful landscapes. Fortunately, securing a tourist visa has become more straightforward in recent years.\n\nThe process primarily involves submitting your documents through an accredited travel agency, as the Embassy of Japan in the Philippines does not accept direct applications for tourist visas.\n\nMake sure your financial documents are strong and your itinerary is clear to maximize your chances of approval.",
+    "keyTakeaways": [
+      "Apply exclusively through accredited travel agencies",
+      "Prepare a detailed daily schedule of your trip",
+      "Submit original bank certificates along with bank statements",
+      "Ensure your Income Tax Return (ITR) is current and valid",
+      "You do not need to book flights or hotels before the visa is approved"
+    ],
+    "quickFacts": {
+      "Processing Time": "3-7 working days",
+      "Validity Period": "Up to 90 days (Single Entry)",
+      "Cost": "Visa is Free, but Agency fees range Php 800 - Php 2,000",
+      "Visa Type": "Short-Term Tourist Visa",
+      "Where To Apply": [
+        "Accredited Travel Agencies (e.g., Reli Tours, Universal Holidays)"
+      ]
+    },
+    "faqs": [
+      {
+        "q": "Do I need to submit confirmed flight tickets?",
+        "a": "No, the Embassy advises against purchasing tickets until your visa is issued."
+      },
+      {
+        "q": "Can I apply without an ITR?",
+        "a": "Yes, but you will need to provide a very strong explanation letter for why you don't have one, along with substantial alternative proofs of financial capacity."
+      },
+      {
+        "q": "Is an interview required?",
+        "a": "Generally no, but the Embassy reserves the right to call applicants for an interview if they need further clarification."
+      }
+    ],
+    "additionalResources": "Always check the official Embassy of Japan in the Philippines website for the latest accredited agency list.",
+    "proTip": "If submitting an explanation letter for missing documents, keep it concise, respectful, and attached with supporting alternative documents.",
+    "category": "Destination Guides"
   }
 ]
