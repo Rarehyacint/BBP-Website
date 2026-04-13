@@ -1,0 +1,21 @@
+{
+    "collectionName": "components_type_texts",
+    "info": {
+        "displayName": "Text"
+    },
+    "options": {},
+    "attributes": {
+        "Name": {
+            "type": "string",
+            "required": true
+        },
+        "Title": {
+            "type": "string",
+            "required": true
+        },
+        "Text": {
+            "type": "blocks"
+        }
+    },
+    "config": {}
+}
